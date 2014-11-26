@@ -9,29 +9,37 @@ Class Queue extends CI_Model {
 		// First get the queue.
 		
 		$this->db->select('QUEUE_CONTENT');
-		$this->db->where('QUEUE_NAME', "Triage");
-		$queueContent = $this->db->get('QUEUE');
-
+		$this->db->from('queue');
+		$this->db->where('QUEUE_NAME', "TRIAGE");
+		$query = $this->db->get()->row_array();
+		$queueContent = $query['QUEUE_CONTENT'];
+		
 		/* If queue is empty, then create a new queue and queue patient.
 		 */
 		 
 		 $triage = new SplQueue();
-		 
-		 return $queueContent;
-		 
-		if ($queueContent == '') {
+		 		 
+		if ($queueContent === '') {
 			$triage->enqueue(array($patient, $visit));
 		}
 		/* Queue isn't empty - de serialize the queue and enqueue patient.
 		 */
 		else {
 			$triage->unserialize($queueContent);
-			$triage->unqueue(array($patient, $visit));
+			$triage->enqueue(array($patient, $visit));
 		}
 		
-		return $triage;
 		
 		// Update triage queue.
+		
+		$data = array(
+			'QUEUE_CONTENT' => $triage->serialize()
+			);
+		$this->db->where('QUEUE_NAME', 'TRIAGE');
+		$this->db->update('QUEUE', $data);
+
+		return $triage;
+
 	}
 
 }

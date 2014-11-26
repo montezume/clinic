@@ -1,7 +1,5 @@
 <?php
 
-$hashpass = password_hash("John", PASSWORD_BCRYPT);
-
 $mysqli = new mysqli("localhost:3306", "root", "");
 
 /* check connection */
@@ -54,8 +52,8 @@ CREATE TABLE visit
  EXAMINATION_TIME TIMESTAMP DEFAULT NOW(),
  CODE INT(1),
  PRIMARY_COMPLAINT VARCHAR(255),
- SYMPTON_1 VARCHAR(255),
- SYMPTON_2 VARCHAR(255),
+ SYMPTOM_1 VARCHAR(255),
+ SYMPTOM_2 VARCHAR(255),
  
  FOREIGN KEY (PATIENT_ID)
 	REFERENCES patient(patient_id)
@@ -97,15 +95,6 @@ else {
 	echo $mysqli->error;
         echo "error!!";  
 }
-
-$insertUser = "
-
-USE CQS;
-INSERT INTO USER(USER_NAME, HASHED_PASSWORD, RECEPTION) VALUES ('John', $hashpass, 1);
-
-";
-
-$insertUser = $mysqli->multi_query($insertUser);
 
 $mysqli->close();
 ?>

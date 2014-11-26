@@ -26,8 +26,8 @@ Class Visit extends CI_Model {
 		$data = array (
 			'CODE' => $code,
 			'PRIMARY_COMPLAINT' => $primary_complaint,
-			'SYMPTON_1' => $sympton_1,
-			'SYMPTON_2' => $sympton_2
+			'SYMPTOM_1' => $symptom_1,
+			'SYMPTOM_2' => $symptom_2
 		);
 		
 		$this->db->set('TRIAGE_TIME', 'NOW()', FALSE);
