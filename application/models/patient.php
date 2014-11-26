@@ -32,9 +32,10 @@ Class Patient extends CI_Model {
 			'MEDICATION_2' => $patient['select2'],
 			'MEDICATION_3' => $patient['select3'] );
 	
-		$insert = $this->db->insert('PATIENT', $data);
+		$result = $this->db->insert('PATIENT', $data);
+		$patient_id = $this->db->insert_id();
 		
-		return $insert;	
+		return $patient_id;	
 	}
 	
 	function updatePatient($patient, $patient_id) {

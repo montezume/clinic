@@ -13,13 +13,13 @@ class PatientRegistration extends CI_Controller
     function index()
     {		
 		// set form rules
-		$this->form_validation->set_rules('ramq', 'RAMQ', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('firstName', 'first name', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('lastName', 'last name', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('homePhone', 'home phone', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('emergencyPhone', 'emergency contact', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('conditions', 'existing conditions', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('primaryPhysician', 'primary physician', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('ramq', 'RAMQ', 'trim|required');
+		$this->form_validation->set_rules('firstName', 'first name', 'trim|required');
+		$this->form_validation->set_rules('lastName', 'last name', 'trim|required');
+		$this->form_validation->set_rules('homePhone', 'home phone', 'trim|required');
+		$this->form_validation->set_rules('emergencyPhone', 'emergency contact', 'trim|required');
+		$this->form_validation->set_rules('conditions', 'existing conditions', 'trim|required');
+		$this->form_validation->set_rules('primaryPhysician', 'primary physician', 'trim|required');
 
 		$this->form_validation->set_error_delimiters("<div class='alert alert-danger' role='alert'>
 		<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
@@ -56,20 +56,27 @@ class PatientRegistration extends CI_Controller
 						$this->updatePatient($patient, $patient_id);
 
 					}
-					// patient is not yet in db, inset.
+					// patient is not yet in db, insert.
 					else {
-						$this->addPatient($patient);
+						$patient_id = $this->addPatient($patient);
 					}
 					
-					// add to triage queue.
+					// Add to visit table.
 					
+					$visit_id = $this->addVisit($patient_id);
+					
+					// Add to triage queue.
+					
+					$test = $this->addToTriage($patient_id, $visit_id);
+					
+					var_dump($test);
 					$message = $patient['firstName'] . " " . $patient['lastName'] . " was added to the queue";
 					
 					// send flash data to confirm that patient was added or updated to triage.
 					$this->session->set_flashdata('change', $message);
 
 					
-					redirect("ramqregistration", 'refresh');
+					//redirect("ramqregistration", 'refresh');
 				}
 		}
 	}
@@ -135,13 +142,29 @@ class PatientRegistration extends CI_Controller
 		
         $this->load->view('footer');
     }
+	
+	function addToTriage($patient_id, $visit_id) {
+		$this->load->model('queue');
+	
+		$inserted = $this->queue->addToTriage($patient_id, $visit_id);
+	
+		return $inserted;
+	}
     	
+	function addVisit($patient_id) {
+		// create instance of visit model
+		$this->load->model('visit');
+		$visit_id = ($this->visit->addVisit($patient_id));
+		return $visit_id;
+	}
+		
 	function addPatient($patient) {
 	    // create instance of user model
-        $this->load->model('patient');
-        $added = ($this->patient->addPatient($patient));
-		if ($added) {
-			return $added;				
+        
+		$this->load->model('patient');
+        $patient_id = ($this->patient->addPatient($patient));
+		if ($patient_id) {
+			return $patient_id;				
 		}
 		else {
 			return false;
