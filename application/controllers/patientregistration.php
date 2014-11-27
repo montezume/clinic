@@ -8,7 +8,6 @@ class PatientRegistration extends CI_Controller
     {
         parent::__construct();
 		$this->load->library('form_validation');
-
     }
     function index()
     {		
@@ -69,7 +68,7 @@ class PatientRegistration extends CI_Controller
 					
 					$test = $this->addToTriage($patient_id, $visit_id);
 					
-					$message = $patient['firstName'] . " " . $patient['lastName'] . " was added to the queue";
+					$message = $patient['firstName'] . " " . $patient['lastName'] . " was added to the triage queue";
 					
 					// send flash data to confirm that patient was added or updated to triage.
 					$this->session->set_flashdata('change', $message);

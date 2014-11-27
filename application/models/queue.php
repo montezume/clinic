@@ -1,6 +1,13 @@
 <?php
 Class Queue extends CI_Model {
 
+	function getLengthOfQueue($queueName) {
+		// Get the triage queue.
+		$queue = $this->getQueue($queueName);	 	 
+		
+		return $queue->count();
+	}
+
 	/*
 	 * Called by the nurse to get the first patient in the triage queue.
 	 */

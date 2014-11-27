@@ -30,17 +30,25 @@ class Login extends CI_Controller
             $this->load->view('header', $headerData);
             $this->load->view('login_view', $loginData);
             $this->load->view('footer');
-        } else // login was successful, redirect
-            {
-			$headerData = array(
-                'title' => 'CQS - Patient Registration'
-            );
-
-			//$this->load->view('header', $headerData);
-			//$this->load->view('patient_registration_view');
-			//$this->load->view('footer');
-            redirect('ramqregistration', 'refresh');
-        }
+        } else // login was successful, redirect...
+			
+			// maybe redirect to a screen that allows them to choose where to go
+			// based on priviledges?
+			
+	
+		
+			if ($this->session->userdata('logged_in')['RECEPTION']) {
+			    redirect('ramqregistration', 'refresh');
+			}
+			else { 
+			
+			if ($this->session->userdata('logged_in')['NURSE']) {
+				redirect('triageoverview', 'refresh');
+				}
+			
+			}
+	
+        
     }
     function login_user($password)
     {
