@@ -51,12 +51,12 @@ class PatientRegistration extends CI_Controller
 					
 					$patient = $_POST;
 
-					// if patient id exists, patient is already in DB, therefore update.
+					// Patient id exists, patient is already in DB, therefore update.
 					if (isset($patient_id)) {
 						$this->updatePatient($patient, $patient_id);
 
 					}
-					// patient is not yet in db, insert.
+					// Patient is not yet in db, insert.
 					else {
 						$patient_id = $this->addPatient($patient);
 					}
@@ -69,14 +69,12 @@ class PatientRegistration extends CI_Controller
 					
 					$test = $this->addToTriage($patient_id, $visit_id);
 					
-					var_dump($test);
 					$message = $patient['firstName'] . " " . $patient['lastName'] . " was added to the queue";
 					
 					// send flash data to confirm that patient was added or updated to triage.
 					$this->session->set_flashdata('change', $message);
-
 					
-					//redirect("ramqregistration", 'refresh');
+					redirect("ramqregistration", 'refresh');
 				}
 		}
 	}
@@ -143,11 +141,10 @@ class PatientRegistration extends CI_Controller
         $this->load->view('footer');
     }
 	
-	function addToTriage($patient_id, $visit_id) {
+	function addToTriage($visit_id) {
+		// create instance of the queue model
 		$this->load->model('queue');
-	
-		$inserted = $this->queue->addToTriage($patient_id, $visit_id);
-	
+		$inserted = $this->queue->addToQueue($visit_id, 'TRIAGE');
 		return $inserted;
 	}
     	
@@ -162,6 +159,7 @@ class PatientRegistration extends CI_Controller
 	    // create instance of user model
         
 		$this->load->model('patient');
+		// add the patient to the db using the model, returning the patient id.
         $patient_id = ($this->patient->addPatient($patient));
 		if ($patient_id) {
 			return $patient_id;				
