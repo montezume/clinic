@@ -15,12 +15,20 @@ Class Queue extends CI_Model {
 		
 		// Get the triage queue.
 		$queue = $this->getQueue($queueName);	 	 
-		// Dequeue next patient.
-		$nextPatientId = $queue->dequeue();
-		// Update queue.
-		$this->updateQueue($queue, $queueName);
+		// Dequeue next patient if exists.
 		
-		return $nextPatientId;
+		if ($queue->count() > 0) {
+			$nextVisitId = $queue->dequeue();
+		}
+		else {
+			$nextVisitId = -1;
+		}
+		// Update queue if patient existed.
+		if ($nextVisitId != -1) {
+			$this->updateQueue($queue, $queueName);
+		}
+		
+		return $nextVisitId;
 	}
 
 	/*
