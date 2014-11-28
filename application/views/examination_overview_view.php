@@ -13,17 +13,21 @@
 
 	<div class="progress">
 		
-	<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"><?php echo "$lengthOfQueue1" ?>
-			<span class="sr-only"><?php echo "$lengthOfQueue1 patients in queue 1" ?></span>
+		<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo (($lengthOfQueue1 / $totalQueueLength) * 100); ?>%;"><?php echo "$lengthOfQueue1" ?>
+				<span class="sr-only"><?php echo "$lengthOfQueue1 patients in queue 1" ?></span>
 		</div>
 	</div>
 	
 	<span id="helpBlock" class="help-block">Second Queue</span>			
-	
-	<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="width:<?php echo ("($lengthOfQueue2 / 100"); ?>"; ><?php echo "$lengthOfQueue1" ?>
-			<span class="sr-only"><?php echo "$lengthOfQueue1 patients in queue 1" ?></span>
+	<div class="progress">
+
+		<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo (($lengthOfQueue2 / $totalQueueLength) * 100); ?>%;"><?php echo "$lengthOfQueue2" ?>
+				<span class="sr-only"><?php echo "$lengthOfQueue1 patients in queue 1" ?></span>
 		</div>
+
+	
 	</div>
+
 	</br>
 	<div class='form-group'>
 	<button type="submit" class="btn btn-default" aria-label="Left Align" style="margin-top:20px"><span class='text-muted'>Get Next Patient</span>
