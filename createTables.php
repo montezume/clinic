@@ -69,7 +69,8 @@ CREATE TABLE visit
  
  CREATE TABLE system
  (
- CURRENT_POSITION INT(2) PRIMARY KEY
+ SYSTEM_ID INT(11) PRIMARY KEY auto_increment,
+ CURRENT_POSITION INT(1) not null default 0
  );
 
  CREATE TABLE user 
