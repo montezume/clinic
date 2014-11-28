@@ -1,6 +1,13 @@
 <?php
 Class Visit extends CI_Model {
 
+	function getPatientId($visit_id) {
+		$this->db->select('PATIENT_ID');
+		$this->db->where('VISIT_ID', $visit_id);
+		$query = $this->db->get('VISIT')->row_array();
+		$patient_id = $query['PATIENT_ID'];
+		return $patient_id;
+	}
 	/*
 	 * Used by the receptionist when patient arrives.
 	 */
@@ -14,7 +21,7 @@ Class Visit extends CI_Model {
 	
 		$insert = $this->db->insert('VISIT', $data);
 		$visit_id = $this->db->insert_id();
-
+		
 		return $visit_id;	
 	}
 	

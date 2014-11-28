@@ -66,7 +66,7 @@ class PatientRegistration extends CI_Controller
 					
 					// Add to triage queue.
 					
-					$test = $this->addToTriage($patient_id, $visit_id);
+					$test = $this->addToTriage($visit_id);
 					
 					$message = $patient['firstName'] . " " . $patient['lastName'] . " was added to the triage queue";
 					

@@ -1,6 +1,14 @@
 <?php
 Class Patient extends CI_Model {
 	
+	function getPatientById($patient_id) {
+		$this->db->select();
+		$this->db->where('PATIENT_ID', $patient_id);
+		$query = $this->db->get('PATIENT')->row_array();
+		return $query;
+
+	}
+	
 	function findPatient($ramq) {
 		
 		$sql = "SELECT * from PATIENT where RAMQ_ID = ?";

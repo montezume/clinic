@@ -3,8 +3,7 @@ Class Queue extends CI_Model {
 
 	function getLengthOfQueue($queueName) {
 		// Get the triage queue.
-		$queue = $this->getQueue($queueName);	 	 
-		
+		$queue = $this->getQueue($queueName);
 		return $queue->count();
 	}
 
@@ -41,7 +40,7 @@ Class Queue extends CI_Model {
 		// Add visit id to the queue.
 		$queue->enqueue($visit);
 		
-		// Update queue table..
+		// Update queue table.
 		$insert = $this->updateQueue($queue, $queueName);
 		
 		return $insert;
