@@ -124,31 +124,6 @@
 		</div>
 			<input type='hidden' class='form-control' name='queue' id='queue' value=''>
 
-
-
-			<!--
-			<span id="helpBlock" class="help-block">Triage level</span>		
-			<div class='form-group'>
-			<label class="radio-inline">
-				<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-			</label>
-			<label class="radio-inline">
-				<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
-			</label>
-			
-			<label class="radio-inline">
-				<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
-			</label>
-			
-			<label class="radio-inline">
-				<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option4"> 4
-			</label>
-			
-			<label class="radio-inline">
-				<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option5"> 5
-			</label>
-			</div>
-			-->
 			
 			<div class='form-group'>
 				<button type="submit" class="btn btn-default" aria-label="Left Align"><span class='text-muted'>Submit</span>

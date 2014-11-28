@@ -8,7 +8,7 @@ Class Queue extends CI_Model {
 	}
 
 	/*
-	 * Called by the nurse to get the first patient in the triage queue.
+	 * Returns the first patient in the queue.
 	 */
 	function getNextPatient($queueName) {
 		
@@ -31,7 +31,7 @@ Class Queue extends CI_Model {
 	}
 
 	/*
-	 * Called by the receptionist to add patient to triage queue.
+	 * Called to add a visit id to the queue.
 	 */
 	function addToQueue($visit, $queueName) {
 		

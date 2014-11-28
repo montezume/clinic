@@ -28,17 +28,17 @@ Class Visit extends CI_Model {
 	/*
 	 * Used by the nurse after triaging.
 	 */ 
-	function updateVisit($visit_id, $code) {
+	function updateVisit($visit_id, $code, $primaryComplaint, $symptom_1, $symptom_2) {
 	
 		$data = array (
 			'CODE' => $code,
-			'PRIMARY_COMPLAINT' => $primary_complaint,
+			'PRIMARY_COMPLAINT' => $primaryComplaint,
 			'SYMPTOM_1' => $symptom_1,
 			'SYMPTOM_2' => $symptom_2
 		);
 		
 		$this->db->set('TRIAGE_TIME', 'NOW()', FALSE);
-		$this->db->where('VISIT_ID', $visit['VISIT_ID']);
+		$this->db->where('VISIT_ID', $visit_id);
 		$this->db->update('VISIT', $data);
 	}
 

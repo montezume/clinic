@@ -43,16 +43,25 @@ class TriagePatient extends CI_Controller
 				if ($this->form_validation->run() == FALSE) {
 					$this->showTriageForm($visit_id);
 				}
-
+				// no form errors~!!!
 				else {
+				
 				// need to add him to appropriate Queue based on TRIAGE level.
 				
-				var_dump($_POST);
-				//redirect("triageoverview", 'refresh');
+				$queueName = trim(htmlentities($_POST['queue']));
+				
+				$this->addToQueue($visit_id, $queueName);
+				
+				$primaryComplaint = trim(htmlentities($_POST['primaryComplaint']));
+				$firstSymptom = trim(htmlentities($_POST['firstSymptom']));
+				$secondSymptom = trim(htmlentities($_POST['secondSymptom']));
+				
+				$this->updateVisit($visit_id, $queueName, $primaryComplaint, $firstSymptom, $secondSymptom);
+				
+				redirect("triageoverview", 'refresh');
 					}
 				}
 			}
-		
 	}
 	
 	function showTriageForm($visit_id) {
@@ -64,9 +73,6 @@ class TriagePatient extends CI_Controller
 		$this->load->model('patient');
 		$patient = $this->patient->getPatientById($patient_id);
 		
-		
-
-		
 		$headerData = array(
 						'title' => 'CQS - Triage Patient'
 					);
@@ -77,6 +83,16 @@ class TriagePatient extends CI_Controller
 		$this->load->view('triage_patient_view', $formData);
 		$this->load->view('footer');
 
+	}
+	
+	function updateVisit($visit_id, $queueName, $primaryComplaint, $firstSymptom, $secondSymptom) {
+		$this->load->model('visit');
+		$this->visit->updateVisit($visit_id, $queueName, $primaryComplaint, $firstSymptom, $secondSymptom);
+	}
+	
+	function addToQueue($visit_id, $queueName) {
+		$this->load->model('queue');
+		$this->queue->addToQueue($visit_id, $queueName);
 	}
 		
 } // end class
