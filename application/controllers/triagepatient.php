@@ -16,11 +16,16 @@ class TriagePatient extends CI_Controller
 		<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
 		<span class='sr-only'>Error:</span>", '</div>');
 
+		$this->form_validation->set_rules('primaryComplaint', 'RAMQ', 'trim|required');
+		$this->form_validation->set_rules('firstSymptom', 'first sympton', 'trim|required');
+		$this->form_validation->set_rules('secondSymptom', 'second sympton', 'trim|required');
+		$this->form_validation->set_rules('queue', 'queue', 'trim|required');
+
 		// read visit id from flash data.
 		$this->session->keep_flashdata('visit_id');
 		$visit_id = $this->session->flashdata('visit_id');
 
-		// will need form validation rules...
+		// TODO: will need form validation rules...
 		
 		// if user is not logged in or does not have receptionist privileges.
         if (!$this->session->userdata('logged_in') || !$this->session->userdata('logged_in')['NURSE']) {
@@ -34,11 +39,17 @@ class TriagePatient extends CI_Controller
 			else {
 				// form is submitted 
 				
-				// make sure it's valid.
-				
+				// if there are form errors.
+				if ($this->form_validation->run() == FALSE) {
+					$this->showTriageForm($visit_id);
+				}
+
+				else {
 				// need to add him to appropriate Queue based on TRIAGE level.
 				
-				redirect("triageoverview", 'refresh');
+				var_dump($_POST);
+				//redirect("triageoverview", 'refresh');
+					}
 				}
 			}
 		
@@ -47,19 +58,19 @@ class TriagePatient extends CI_Controller
 	function showTriageForm($visit_id) {
 		
 		// get patient / registration information.
-				
 		// load  model.
 		$this->load->model('visit');
 		$patient_id = $this->visit->getPatientId($visit_id);
 		$this->load->model('patient');
 		$patient = $this->patient->getPatientById($patient_id);
+		
+		
 
 		
 		$headerData = array(
 						'title' => 'CQS - Triage Patient'
 					);
 		$formData = array(
-					'visit_id' => $visit_id,
 					'patient' => $patient
 				);
 		$this->load->view('header', $headerData);
@@ -68,6 +79,5 @@ class TriagePatient extends CI_Controller
 
 	}
 		
-	
 } // end class
 ?>
