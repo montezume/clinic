@@ -11,5 +11,27 @@
 </head>
 
 <body>
-    <div class="container">
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+      <a class="navbar-brand" href="#">CQS</a>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+	    <li><?php echo ($this->session->userdata('logged_in')) ? anchor('dashboard', 'Dashboard') : "" ?></li>
+        <li><?php echo ($this->session->userdata('logged_in')['RECEPTION']) ? anchor('ramqregistration', 'Reception') : "" ?></li>
+        <li><?php echo ($this->session->userdata('logged_in')['TRIAGE']) ? anchor('triageoverview', 'Triage') : "" ?></li>
+        <li><?php echo ($this->session->userdata('logged_in')['NURSE']) ? anchor('examinationoverview', 'Examination') : "" ?></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+       
+	   <li><a href="#">Logout</a></li>
+      
+	  </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
 

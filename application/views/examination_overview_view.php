@@ -21,11 +21,10 @@
 	<span id="helpBlock" class="help-block">Second Queue</span>			
 	<div class="progress">
 
-		<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo (($lengthOfQueue2 / $totalQueueLength) * 100); ?>%;"><?php echo "$lengthOfQueue2" ?>
+		<div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo (($lengthOfQueue2 / $totalQueueLength) * 100); ?>%;"><?php echo "$lengthOfQueue2" ?>
 				<span class="sr-only"><?php echo "$lengthOfQueue1 patients in queue 1" ?></span>
 		</div>
 
-	
 	</div>
 
 	</br>

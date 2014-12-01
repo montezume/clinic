@@ -9,10 +9,6 @@ class Login extends CI_Controller
     }
     function index()
     {
-        $this->load->helper(array(
-            'form',
-            'url'
-        ));
         $this->load->library('form_validation');
         $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_login_user');
@@ -20,6 +16,7 @@ class Login extends CI_Controller
 		<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
 		<span class='sr-only'>Error:</span>", '</div>');
         
+		// if form hasn't been submitted or if there was an error
 		if ($this->form_validation->run() == FALSE) {
             $headerData = array(
                 'title' => 'CQS - Login'
@@ -30,25 +27,15 @@ class Login extends CI_Controller
             $this->load->view('header', $headerData);
             $this->load->view('login_view', $loginData);
             $this->load->view('footer');
-        } else // login was successful, redirect...
+        } else { // login was successful, redirect...
 			
 			// maybe redirect to a screen that allows them to choose where to go
 			// based on priviledges?
 			
-	
 		
-			if ($this->session->userdata('logged_in')['RECEPTION']) {
-			    redirect('ramqregistration', 'refresh');
+			    redirect('dashboard', 'refresh');
 			}
-			else { 
 			
-			if ($this->session->userdata('logged_in')['NURSE']) {
-				redirect('triageoverview', 'refresh');
-				}
-			
-			}
-	
-        
     }
     function login_user($password)
     {
