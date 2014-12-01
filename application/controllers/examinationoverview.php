@@ -108,6 +108,7 @@ class ExaminationOverview extends CI_Controller
 				case 4:
 				case 8:
 					// TODO peek to check that first code 2 patient didn't arrive first.
+					
 					$nextVisitId = $this->queue->getNextPatient('3');
 					break;
 				case 3:
@@ -124,9 +125,7 @@ class ExaminationOverview extends CI_Controller
 			$this->system->incrementCurrentPosition();
 			return $nextVisitId;
 		}
-		
-		// figure out which patient to take using algorithm.
-		
+				
 		//return $this->queue->getNextPatient('TRIAGE');
 	}
 	

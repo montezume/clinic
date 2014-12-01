@@ -26,9 +26,9 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
        
-	   <li><a href="#">Logout</a></li>
-      
+	    <li><?php echo ($this->session->userdata('logged_in')) ? anchor('logout', 'Logout') : "" ?></li>
 	  </ul>
+      
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
