@@ -50,7 +50,6 @@ class Login extends CI_Controller
 		if ($invalidCount >= 5) {
 			$this->form_validation->set_message('login_user', 'Too many attempts - contact admin to reset password');
             return false;
-
 		}
 		
         $result = ($this->user->login($user, $password));

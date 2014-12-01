@@ -52,9 +52,7 @@ class ExaminationOverview extends CI_Controller
 		
 		$queueLengths = array();
 		$totalQueueLength = 0;
-		
-		echo $this->getLengthOfQueue('5');
-		
+				
 		for ($i = 1; $i < 6; $i++) {
 			$currentQueueLength = $this->getLengthOfQueue($i);
 			$queueLengths[] = $this->getLengthOfQueue($i);
@@ -71,13 +69,10 @@ class ExaminationOverview extends CI_Controller
 				'lengthOfQueue3' => $queueLengths[2],
 				'lengthOfQueue4' => $queueLengths[3],
 				'lengthOfQueue5' => $queueLengths[4],
-
 			);
-			
-		var_dump($totalQueueLength);
-		var_dump($viewData);
+		
 		$this->load->view('examination_overview_view', $viewData);
-
+		$this->load->view('footer');
 	}
 	
 	function getNextPatient() {
@@ -103,12 +98,16 @@ class ExaminationOverview extends CI_Controller
 				case 5:
 				case 7:
 					$nextVisitId = $this->queue->getNextPatient('2');
-					break;
+					
+					// if a patient is in the queue...
+					if ($nextVisitId != -1) {
+						break;
+					}
+					$this->system->incrementCurrentPosition();
 				case 1:
 				case 4:
 				case 8:
-					// TODO peek to check that first code 2 patient didn't arrive first.
-					
+					// TODO peek to check that first code 2 patient didn't arrive first.					
 					$nextVisitId = $this->queue->getNextPatient('3');
 					break;
 				case 3:
@@ -122,11 +121,13 @@ class ExaminationOverview extends CI_Controller
 					break;
 				}
 			
-			$this->system->incrementCurrentPosition();
+			if ($nextVisitId != -1 ) {
+				$this->system->incrementCurrentPosition();
+			}
+			
 			return $nextVisitId;
 		}
 				
-		//return $this->queue->getNextPatient('TRIAGE');
 	}
 	
 	function getLengthOfQueue($queueName) {

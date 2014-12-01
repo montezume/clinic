@@ -17,8 +17,8 @@ class TriagePatient extends CI_Controller
 		<span class='sr-only'>Error:</span>", '</div>');
 
 		$this->form_validation->set_rules('primaryComplaint', 'RAMQ', 'trim|required');
-		$this->form_validation->set_rules('firstSymptom', 'first sympton', 'trim|required');
-		$this->form_validation->set_rules('secondSymptom', 'second sympton', 'trim|required');
+		$this->form_validation->set_rules('firstSymptom', 'first symptom', 'trim|required');
+		$this->form_validation->set_rules('secondSymptom', 'second symptom', 'trim|required');
 		$this->form_validation->set_rules('queue', 'queue', 'trim|required');
 
 		// read visit id from flash data.
@@ -45,7 +45,6 @@ class TriagePatient extends CI_Controller
 				}
 				// no form errors~!!!
 				else {
-				
 				// need to add him to appropriate Queue based on TRIAGE level.
 				
 				$queueName = trim(htmlentities($_POST['queue']));
