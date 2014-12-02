@@ -7,8 +7,35 @@ Class Queue extends CI_Model {
 		return $queue->count();
 	}
 
+	function getNextVisitId($queueName) {
+	
+		$this->db->trans_start();
+		$query = $this->db->query("SELECT queue_content FROM queue WHERE queue_name = $queueName FOR UPDATE")->row_array();
+		$queueContent = $query['QUEUE_CONTENT'];
+		
+		$queue = new SplQueue();
+		$nextVisitId = -1;
+		
+		if ($queueContent != '') {
+			$queue->unserialize($queueContent);
+			$nextVisitId = $queue->dequeue();
+		}
+		
+		$this->updateQueue($queue, $queueName);
+	
+		$this->db->trans_complete(); //commits or rollback the transaction, releases locks
+		
+		if ($this->db->trans_status() === FALSE) {
+				//logic if the transaction failed. Code Igniter isn’t really object-oriented, it doesn’t throw exceptions
+			} 
+		
+		return $nextVisitId;
+		
+	
+	}
+	
 	/*
-	 * Returns the first patient in the queue.
+	 * Returns the first visit id in the queue.
 	 */
 	function getNextPatient($queueName) {
 				
@@ -46,6 +73,7 @@ Class Queue extends CI_Model {
 		return $insert;
 	}
 
+	
 	/* Accepts an SplQueue, and updates the corresponding table with it.
 	 */
 	private function updateQueue($queue, $queueName) {
@@ -58,7 +86,7 @@ Class Queue extends CI_Model {
 
 	}
 	private function getQueue($queueName) {
-		
+				
 		// First get the queue.
 		
 		$this->db->select('QUEUE_CONTENT');

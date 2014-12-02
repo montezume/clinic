@@ -25,6 +25,8 @@ class ExaminationScreen extends CI_Controller
 					$this->showExaminationScreen($visit_id);
 				} else {
 				// form is submitted, bring them back to triage overview.
+				$this->load->model('visit');
+				$this->visit->updateAfterExamination($visit_id);
 				redirect('examinationoverview', 'refresh');
 				}
 			}

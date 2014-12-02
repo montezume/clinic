@@ -15,8 +15,8 @@ Class Visit extends CI_Model {
 		
 		$data = array(
 			'PATIENT_ID' => $patient_id,
-			'TRIAGE_TIME' => null,
-			'EXAMINATION_TIME' => null
+			'TRIAGE_TIME' => 0,
+			'EXAMINATION_TIME' => 0
 			);
 	
 		$insert = $this->db->insert('VISIT', $data);
@@ -25,6 +25,13 @@ Class Visit extends CI_Model {
 		return $visit_id;	
 	}
 	
+	function updateAfterExamination($visit_id) {
+		
+		$this->db->set('EXAMINATION_TIME', 'NOW()', FALSE);
+		$this->db->where('VISIT_ID', $visit_id);
+		$this->db->update('VISIT');
+
+	}
 	/*
 	 * Used by the nurse after triaging.
 	 */ 
@@ -49,6 +56,18 @@ Class Visit extends CI_Model {
 		$this->db->where('VISIT_ID', $visit_id);
 		$query = $this->db->get('VISIT')->row_array();
 		return $query;
+	}
+	
+	function getAverageTimeBeforeTriage($hours) {
+		$this->db->select('avg(TIMESTAMPDIFF(SECOND, registration_time, triage_time) / 60)');
+		$this->db->where('TRIAGE !=', $hours);
+		$this->db->where('REGISTRATION TIME > $hours');
+
+		// SELECT avg(TIMESTAMPDIFF(SECOND, registration_time, triage_time) / 60) from VISIT where triage_time != 0);
+		
+		//this->db->select_avg('');
+		
+
 	}
 
 }

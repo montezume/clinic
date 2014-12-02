@@ -5,7 +5,48 @@
 
 		<div class ="well">
 		
-		<p>Stuff goes here...</p>
+				<?php echo validation_errors(); ?>				
+				<?php echo form_open('admin'); ?>
+				<h2>Average time spent... <h class="pull-right"><span class="glyphicon glyphicon-time pull-right" aria-hidden="true"></span> </h2>
+				<div class="form-horizontal" role="form">
+					<div class="form-group">
+						
+						<label for="avgTriageTime" class="control-label col-sm-4">To be triaged</label>
+						<div class="col-sm-4">
+						<select class="form-control">
+							  <option>1</option>
+							  <option>2</option>
+							  <option>3</option>
+							  <option>4</option>
+							  <option>5</option>
+							</select>	
+							</div>
+					</div>
+
+					<div class="form-group">
+						<label for="avgTimeSpentInEachCode" class="control-label col-sm-4">Spent in each code.</label>
+								<div class="col-sm-4">
+						<select class="form-control">
+							  <option>1</option>
+							  <option>2</option>
+							  <option>3</option>
+							  <option>4</option>
+							  <option>5</option>
+							</select>	
+						</div>
+
+					</div>
+					
+					<div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" class="btn btn-primary col-sm-2" id="connectButton" value="Submit"></input>
+                        </div>
+                    </div>							
+					
+				
+				</div>
+				
+				</form>
 		
 		</div>
 			
