@@ -34,7 +34,7 @@
 
 	</div>
 	
-	<span id="helpBlock" class="help-block">Fourth Queue</span>			
+	<span id="helpBlock" class="help-block">Third Queue</span>			
 	<div class="progress">
 
 		<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue3 != 0) ? (($lengthOfQueue3 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue3" ?>
@@ -43,7 +43,7 @@
 
 	</div>
 	
-	<span id="helpBlock" class="help-block">Fifth Queue</span>			
+	<span id="helpBlock" class="help-block">Fourth Queue</span>			
 	<div class="progress">
 
 		<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue4 != 0) ? (($lengthOfQueue3 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue4" ?>
@@ -52,7 +52,7 @@
 
 	</div>
 
-		<span id="helpBlock" class="help-block">Third Queue</span>			
+		<span id="helpBlock" class="help-block">Fifth Queue</span>			
 	<div class="progress">
 
 		<div class="progress-bar queue5 progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue5 != 0) ? (($lengthOfQueue5 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue5" ?>

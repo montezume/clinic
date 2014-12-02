@@ -31,7 +31,8 @@ class ExaminationOverview extends CI_Controller
 				// there are no patients in queue.
 				if ($nextVisitId == -1) {
 					// show error? - no patients available
-					$this->showExaminationOverview();
+					var_dump($nextVisitId);
+					//$this->showExaminationOverview();
 				}
 				// a patient was dequeued from queue.
 				else {
@@ -101,7 +102,7 @@ class ExaminationOverview extends CI_Controller
 					if ($nextVisitId != -1) {
 						break;
 					}
-					$this->system->incrementCurrentPosition();
+					$this->system->incrementCurrentPosition($currentPosition);
 				case 1:
 				case 4:
 				case 8:
@@ -110,7 +111,7 @@ class ExaminationOverview extends CI_Controller
 					if ($nextVisitId != -1) {
 						break;
 					}
-					$this->system->incrementCurrentPosition();
+					$this->system->incrementCurrentPosition($currentPosition);
 				case 3:
 				case 9:
 					// TODO peek to check that first code 2/3 patient didn't arrive first.
@@ -118,18 +119,18 @@ class ExaminationOverview extends CI_Controller
 					if ($nextVisitId != -1) {
 						break;
 					}
-					$this->system->incrementCurrentPosition();
+					$this->system->incrementCurrentPosition($currentPosition);
 				case 6:
 					// TODO peek to check that first code 2/3/4 patient didn't arrive first.
 					$nextVisitId = $this->queue->getNextPatient('5');
 					if ($nextVisitId != -1) {
 						break;
 					}
-					$this->system->incrementCurrentPosition();
+					$this->system->incrementCurrentPosition($currentPosition);
 				}
 			
 			if ($nextVisitId != -1 ) {
-				$this->system->incrementCurrentPosition();
+				$this->system->incrementCurrentPosition($currentPosition);
 			}
 			
 			return $nextVisitId;
