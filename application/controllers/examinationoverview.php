@@ -37,7 +37,7 @@ class ExaminationOverview extends CI_Controller
 				else {
 					// the next screen requires visit ID 
 					$this->session->set_flashdata('visit_id', $nextVisitId);
-					redirect("examinationscreen", 'refresh');
+					//redirect("examinationscreen", 'refresh');
 
 				}
 			}
@@ -107,16 +107,25 @@ class ExaminationOverview extends CI_Controller
 				case 8:
 					// TODO peek to check that first code 2 patient didn't arrive first.					
 					$nextVisitId = $this->queue->getNextPatient('3');
-					break;
+					if ($nextVisitId != -1) {
+						break;
+					}
+					$this->system->incrementCurrentPosition();
 				case 3:
 				case 9:
 					// TODO peek to check that first code 2/3 patient didn't arrive first.
 					$nextVisitId = $this->queue->getNextPatient('4');
-					break;
+					if ($nextVisitId != -1) {
+						break;
+					}
+					$this->system->incrementCurrentPosition();
 				case 6:
 					// TODO peek to check that first code 2/3/4 patient didn't arrive first.
 					$nextVisitId = $this->queue->getNextPatient('5');
-					break;
+					if ($nextVisitId != -1) {
+						break;
+					}
+					$this->system->incrementCurrentPosition();
 				}
 			
 			if ($nextVisitId != -1 ) {

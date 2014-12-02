@@ -27,6 +27,7 @@
 		<li class=<?php echo ($this->router->fetch_class() === 'admin') ? 'active' : ''?> ><?php echo ($this->session->userdata('logged_in')['ADMIN']) ? anchor('admin', 'Admin') : "" ?></li>
 
 		</ul>
+		
 		<ul class="nav navbar-nav navbar-right">
         <li class=<?php echo ($this->router->fetch_class() === 'about') ? 'active' : ''?> ><?php echo anchor('about', 'About') ?></li>
 
