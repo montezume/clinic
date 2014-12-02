@@ -12,7 +12,6 @@ class Dashboard extends CI_Controller
 	
 		
 		// Check if logged in.
-		
 		// Just display links based on user's privileges.
         if ($this->session->userdata('logged_in')) {
 			$this->showDashboard();

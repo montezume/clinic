@@ -25,6 +25,8 @@
         <li><?php echo ($this->session->userdata('logged_in')['RECEPTION']) ? anchor('ramqregistration', 'Reception') : "" ?></li>
         <li><?php echo ($this->session->userdata('logged_in')['TRIAGE']) ? anchor('triageoverview', 'Triage') : "" ?></li>
         <li><?php echo ($this->session->userdata('logged_in')['NURSE']) ? anchor('examinationoverview', 'Examination') : "" ?></li>
+		<li><?php echo ($this->session->userdata('logged_in')['ADMIN']) ? anchor('admin', 'Admin') : "" ?></li>
+
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
         <li><?php echo anchor('about', 'About') ?></li>
