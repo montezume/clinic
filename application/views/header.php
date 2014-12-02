@@ -11,30 +11,28 @@
 </head>
 
 <body>
+
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
       <a class="navbar-brand" href="#">CQS</a>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-	  	 <li><?php echo (!$this->session->userdata('logged_in')) ? anchor('login', 'Login') : "" ?></li>
-
-	    <li><?php echo ($this->session->userdata('logged_in')) ? anchor('dashboard', 'Dashboard') : "" ?></li>
-        <li><?php echo ($this->session->userdata('logged_in')['RECEPTION']) ? anchor('ramqregistration', 'Reception') : "" ?></li>
-        <li><?php echo ($this->session->userdata('logged_in')['TRIAGE']) ? anchor('triageoverview', 'Triage') : "" ?></li>
-        <li><?php echo ($this->session->userdata('logged_in')['NURSE']) ? anchor('examinationoverview', 'Examination') : "" ?></li>
-		<li><?php echo ($this->session->userdata('logged_in')['ADMIN']) ? anchor('admin', 'Admin') : "" ?></li>
+	  	<li class=<?php echo ($this->router->fetch_class() === 'login') ? 'active' : ''?> ><?php echo (!$this->session->userdata('logged_in')) ? anchor('login', 'Login') : "" ?></li>
+	    <li class=<?php echo ($this->router->fetch_class() === 'dashboard') ? 'active' : ''?> ><?php echo ($this->session->userdata('logged_in')) ? anchor('dashboard', 'Dashboard') : "" ?></li>
+        <li class=<?php echo ($this->router->fetch_class() === 'ramqregistration') ? 'active' : ''?> ><?php echo ($this->session->userdata('logged_in')['RECEPTION']) ? anchor('ramqregistration', 'Reception') : "" ?></li>
+        <li class=<?php echo ($this->router->fetch_class() === 'triageoverview') ? 'active' : ''?> ><?php echo ($this->session->userdata('logged_in')['TRIAGE']) ? anchor('triageoverview', 'Triage') : "" ?></li>
+		<li class=<?php echo ($this->router->fetch_class() === 'examinationoverview') ? 'active' : ''?> ><?php echo ($this->session->userdata('logged_in')['NURSE']) ? anchor('examinationoverview', 'Examination') : "" ?></li>
+		<li class=<?php echo ($this->router->fetch_class() === 'admin') ? 'active' : ''?> ><?php echo ($this->session->userdata('logged_in')['ADMIN']) ? anchor('admin', 'Admin') : "" ?></li>
 
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-        <li><?php echo anchor('about', 'About') ?></li>
+        <li class=<?php echo ($this->router->fetch_class() === 'about') ? 'active' : ''?> ><?php echo anchor('about', 'About') ?></li>
 
 	    <li><?php echo ($this->session->userdata('logged_in')) ? anchor('logout', 'Logout') : "" ?></li>
 	  </ul>
       
-    </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
