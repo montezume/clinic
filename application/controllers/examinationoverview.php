@@ -58,9 +58,7 @@ class ExaminationOverview extends CI_Controller
 			$queueLengths[] = $this->getLengthOfQueue($i);
 			$totalQueueLength += $currentQueueLength;
 		}
-		
-		$lengthOfQueue = $this->getLengthOfQueue('5');
-		
+						
 		$viewData = 
 			array(
 				'totalQueueLength' => $totalQueueLength,

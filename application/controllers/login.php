@@ -29,10 +29,6 @@ class Login extends CI_Controller
             $this->load->view('footer');
         } else { // login was successful, redirect...
 			
-			// maybe redirect to a screen that allows them to choose where to go
-			// based on priviledges?
-			
-		
 			    redirect('dashboard', 'refresh');
 			}
 			

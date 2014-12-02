@@ -12,7 +12,6 @@
 
 <div class ="well">
 
-
 	<?php echo form_open('examinationoverview'); ?>
 	<div class='form' role='form'>
 	<?php echo validation_errors(); ?>				
@@ -29,7 +28,7 @@
 	<span id="helpBlock" class="help-block">Second Queue</span>			
 	<div class="progress">
 
-		<div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo (($lengthOfQueue2 / $totalQueueLength) * 100); ?>%;"><?php echo "$lengthOfQueue2" ?>
+		<div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue2 != 0) ? (($lengthOfQueue2 / $totalQueueLength) * 100); ?>%;"><?php echo "$lengthOfQueue2" ?>
 				<span class="sr-only"><?php echo "$lengthOfQueue2 patients in queue 2" ?></span>
 		</div>
 
@@ -38,41 +37,21 @@
 	<span id="helpBlock" class="help-block">Third Queue</span>			
 	<div class="progress">
 
-		<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo (($lengthOfQueue2 / $totalQueueLength) * 100); ?>%;"><?php echo "$lengthOfQueue2" ?>
+		<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo (($lengthOfQueue3 / $totalQueueLength) * 100); ?>%;"><?php echo "$lengthOfQueue3" ?>
 				<span class="sr-only"><?php echo "$lengthOfQueue3 patients in queue 3" ?></span>
 		</div>
 
 	</div>
-	
-	<span id="helpBlock" class="help-block">Fourth Queue</span>			
-	<div class="progress">
 
-		<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo (($lengthOfQueue2 / $totalQueueLength) * 100); ?>%;"><?php echo "$lengthOfQueue2" ?>
-				<span class="sr-only"><?php echo "$lengthOfQueue4 patients in queue 4" ?></span>
-		</div>
-
-	</div>
-	
-	<span id="helpBlock" class="help-block">Fifth Queue</span>			
-	<div class="progress">
-
-		<div class="progress-bar queue5 progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo (($lengthOfQueue2 / $totalQueueLength) * 100); ?>%;"><?php echo "$lengthOfQueue2" ?>
-				<span class="sr-only"><?php echo "$lengthOfQueue5 patients in queue 5" ?></span>
-		</div>
-
-	</div>
-
-
-
-
-	</br>
 	<div class='form-group'>
 	<button type="submit" class="btn btn-default" aria-label="Left Align" style="margin-top:20px"><span class='text-muted'>Get Next Patient</span>
 		<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 	</button>
 	</div>
-
+	
+	<!-- end form -->
+	</div>
 <!-- end well -->	
-</div>
 
+</div>
 </div>
