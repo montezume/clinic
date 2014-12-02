@@ -16,13 +16,13 @@ class ExaminationOverview extends CI_Controller
 		<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
 		<span class='sr-only'>Error:</span>", '</div>');
 
-		// if user is not logged in or does not have receptionist privileges.
+		// if user is not logged in or does not have nurse privileges.
         if (!$this->session->userdata('logged_in') || !$this->session->userdata('logged_in')['NURSE']) {
             redirect('login', 'refresh');
 		} else {
 			 // user hasn't submitted the form.
 			 if (!($this->input->server('REQUEST_METHOD') === 'POST')) {	
-					$this->showExaminationOverview();
+					$this->showExaminationOverview(false);
 				}
 			// redirect to triage screen.
 			else {
@@ -30,15 +30,14 @@ class ExaminationOverview extends CI_Controller
 				$nextVisitId = $this->getNextPatient();
 				// there are no patients in queue.
 				if ($nextVisitId == -1) {
-					// show error? - no patients available
-					var_dump($nextVisitId);
-					//$this->showExaminationOverview();
+					// show view again.
+					$this->showExaminationOverview();
 				}
 				// a patient was dequeued from queue.
 				else {
 					// the next screen requires visit ID 
 					$this->session->set_flashdata('visit_id', $nextVisitId);
-					//redirect("examinationscreen", 'refresh');
+					redirect("examinationscreen", 'refresh');
 
 				}
 			}
@@ -75,6 +74,7 @@ class ExaminationOverview extends CI_Controller
 	}
 	
 	function getNextPatient() {
+	
 		//load system model.
 		$this->load->model('system');
 		
@@ -87,56 +87,52 @@ class ExaminationOverview extends CI_Controller
 			return $this->queue->getNextPatient('1');
 		}
 		
-		// There are no code 1 patients, proceed as usual using the current position in system table.
 		else {
-			
-			$currentPosition = $this->system->getCurrentPosition();
+		
+		// There are no code 1 patients, proceed as usual using the current position in system table.
+
+		for ($i = 0; $i < 9; $i++) {
+		
+			$currentPosition = $this->system->incrementCurrentPosition();
+
 			switch($currentPosition) {
 				case 0: 
 				case 2:
 				case 5:
 				case 7:
 					$nextVisitId = $this->queue->getNextPatient('2');
-					
-					// if a patient is in the queue...
-					if ($nextVisitId != -1) {
-						break;
-					}
-					$this->system->incrementCurrentPosition($currentPosition);
+					break;
 				case 1:
 				case 4:
 				case 8:
 					// TODO peek to check that first code 2 patient didn't arrive first.					
 					$nextVisitId = $this->queue->getNextPatient('3');
-					if ($nextVisitId != -1) {
-						break;
-					}
-					$this->system->incrementCurrentPosition($currentPosition);
+					break;		
 				case 3:
 				case 9:
 					// TODO peek to check that first code 2/3 patient didn't arrive first.
 					$nextVisitId = $this->queue->getNextPatient('4');
-					if ($nextVisitId != -1) {
-						break;
-					}
-					$this->system->incrementCurrentPosition($currentPosition);
+					break;
 				case 6:
 					// TODO peek to check that first code 2/3/4 patient didn't arrive first.
 					$nextVisitId = $this->queue->getNextPatient('5');
-					if ($nextVisitId != -1) {
-						break;
-					}
-					$this->system->incrementCurrentPosition($currentPosition);
+					break;
+					
+				} // end switch
+				
+				if ($nextVisitId != -1) {
+					return $nextVisitId;
 				}
+							
+			} // end loop
 			
-			if ($nextVisitId != -1 ) {
-				$this->system->incrementCurrentPosition($currentPosition);
-			}
-			
-			return $nextVisitId;
+			// queues are empty.
+			return -1;
+		
 		}
 				
 	}
+
 	
 	function getLengthOfQueue($queueName) {
 		// load queue model.

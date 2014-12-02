@@ -12,17 +12,21 @@ Class System extends CI_Model {
 		return $currentPosition;
 	}
 	
-	function incrementCurrentPosition($currentPosition) {
+	function incrementCurrentPosition() {
+
+		$currentPosition = $this->getCurrentPosition();
+		$currentPosition ++;
 		
 		if ($currentPosition == 9) {
 			$currentPosition = 0;
 		}
+		
 		$data = array(
 			'CURRENT_POSITION' => $currentPosition
 			);
 		$this->db->where('SYSTEM_ID', 1);
 		$insert = $this->db->update('SYSTEM', $data);
-		return $insert;
+		return $currentPosition;
 	}
 }
 ?>

@@ -11,7 +11,7 @@ Class Queue extends CI_Model {
 	 * Returns the first patient in the queue.
 	 */
 	function getNextPatient($queueName) {
-		
+				
 		// Get the triage queue.
 		$queue = $this->getQueue($queueName);	 	 
 		// Dequeue next patient if exists.

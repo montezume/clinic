@@ -12,10 +12,14 @@
 
 <div class ="well">
 
+
 	<?php echo form_open('examinationoverview'); ?>
 	<div class='form' role='form'>
-	<?php echo validation_errors(); ?>				
 
+	<?php echo ($totalQueueLength == 0) ? "<div class='alert alert-danger' role='alert'>
+		<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> No patients in queue, why not have a coffee?
+		<span class='sr-only'>Error:</span></div>" : "" ; ?> 
+	
 	<span id="helpBlock" class="help-block">First Queue</span>			
 
 	<div class="progress">
@@ -67,6 +71,9 @@
 		<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 	</button>
 	</div>
+	
+	<input type='hidden' class='form-control' name='queue' id='queue' value=''>
+
 	
 	<!-- end form -->
 	</div>

@@ -16,7 +16,7 @@ class TriagePatient extends CI_Controller
 		<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
 		<span class='sr-only'>Error:</span>", '</div>');
 
-		$this->form_validation->set_rules('primaryComplaint', 'RAMQ', 'trim|required');
+		$this->form_validation->set_rules('primaryComplaint', 'primary complaint', 'trim|required');
 		$this->form_validation->set_rules('firstSymptom', 'first symptom', 'trim|required');
 		$this->form_validation->set_rules('secondSymptom', 'second symptom', 'trim|required');
 		$this->form_validation->set_rules('queue', 'queue', 'trim|required');
