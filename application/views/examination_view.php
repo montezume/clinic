@@ -15,7 +15,7 @@
 			<div class='row'>
 				<label for='ramq' class='col-sm-2 control-label'>RAMQ</label>
 				<div class='col-sm-10'>
-					<input type='text' readonly='readonly' class='form-control' name='ramq' placeholder='Ramq' value="<?php echo $patient['RAMQ_ID'];?>">
+					<input type='text' readonly='readonly' class='form-control' name='ramq' placeholder='Ramq' value="<?php echo isset($patient['RAMQ_ID']) ? $patient['RAMQ_ID'] : '' ;?>">
 				</div>
 			</div>
 		</div>

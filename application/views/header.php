@@ -19,13 +19,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+	  	 <li><?php echo (!$this->session->userdata('logged_in')) ? anchor('login', 'Login') : "" ?></li>
+
 	    <li><?php echo ($this->session->userdata('logged_in')) ? anchor('dashboard', 'Dashboard') : "" ?></li>
         <li><?php echo ($this->session->userdata('logged_in')['RECEPTION']) ? anchor('ramqregistration', 'Reception') : "" ?></li>
         <li><?php echo ($this->session->userdata('logged_in')['TRIAGE']) ? anchor('triageoverview', 'Triage') : "" ?></li>
         <li><?php echo ($this->session->userdata('logged_in')['NURSE']) ? anchor('examinationoverview', 'Examination') : "" ?></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-       
+        <li><?php echo anchor('about', 'About') ?></li>
+
 	    <li><?php echo ($this->session->userdata('logged_in')) ? anchor('logout', 'Logout') : "" ?></li>
 	  </ul>
       

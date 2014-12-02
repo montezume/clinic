@@ -14,7 +14,7 @@
 			<div class='row'>
 				<label for='ramq' class='col-sm-2 control-label'>RAMQ</label>
 				<div class='col-sm-10'>
-					<input type='text' readonly='readonly' class='form-control' name='ramq' placeholder='Ramq' value="<?php echo $patient['RAMQ_ID'];?>">
+					<input type='text' readonly='readonly' class='form-control' name='ramq' placeholder='Ramq' value="<?php echo isset($patient['RAMQ_ID']) ? $patient['RAMQ_ID'] : "" ;?>">
 				</div>
 			</div>
 		</div>
@@ -23,11 +23,11 @@
 			<div class='row'>
 				<label for='firstName' class='col-sm-2 control-label'>First name</label>
 				<div class='col-sm-4'>
-					<input type='text' readonly='readonly' class='form-control' name='firstName' placeholder='First Name' value="<?php echo $patient['FIRST_NAME'];?>">
+					<input type='text' readonly='readonly' class='form-control' name='firstName' placeholder='First Name' value="<?php echo (isset($patient['FIRST_NAME'])) ? $patient['FIRST_NAME'] : "";?>">
 				</div>
 					<label for='lastName' class='col-sm-2 control-label'>Last name</label>
 					<div class='col-sm-4'>
-					<input type='text' readonly='readonly' class='form-control' name='lastName' placeholder='Last Name' value="<?php echo $patient['LAST_NAME'];?>">
+					<input type='text' readonly='readonly' class='form-control' name='lastName' placeholder='Last Name' value="<?php echo (isset($patient['LAST_NAME'])) ? $patient['LAST_NAME'] : "";?>">
 					</div>	
 			</div>
 		</div>
@@ -36,12 +36,12 @@
 			<div class='row'>
 				<label for='homePhone' class='col-sm-2 control-label'>Home</label>
 				<div class='col-sm-4'>
-					<input type='text' readonly='readonly' class='form-control' name='homePhone' placeholder='Home Phone' value="<?php echo $patient['HOME_PHONE'];?>">
+					<input type='text' readonly='readonly' class='form-control' name='homePhone' placeholder='Home Phone' value="<?php echo (isset($patient['HOME_PHONE'])) ? $patient['HOME_PHONE'] : "";?>">
 				</div>
 				
 				<label for='homePhone' class='col-sm-2 control-label'>Emergency</label>
 				<div class='col-sm-4'>
-					<input type='text' readonly='readonly' class='form-control' name='emergencyPhone' placeholder='Emergency Phone' value="<?php echo $patient['EMERGENCY_PHONE'];?>">
+					<input type='text' readonly='readonly' class='form-control' name='emergencyPhone' placeholder='Emergency Phone' value="<?php echo (isset($patient['EMERGENCY_PHONE'])) ? $patient['EMERGENCY_PHONE'] : "";?>">
 				</div>
 			</div>
 		</div>
@@ -50,7 +50,7 @@
 			<div class='row'>
 				<label for='primaryPhysician' class='col-sm-2 control-label'>Primary Physician</label>
 				<div class='col-sm-10'>
-					<input type='text' readonly='readonly' class='form-control' name='primaryPhysician' placeholder='Primary Physician' value="<?php echo $patient['PRIMARY_PHYSICIAN'];?>">
+					<input type='text' readonly='readonly' class='form-control' name='primaryPhysician' placeholder='Primary Physician' value="<?php echo (isset($patient['PRIMARY_PHYSICIAN'])) ? $patient['PRIMARY_PHYSICIAN'] : "";?>">
 				</div>
 			</div>
 		</div>
