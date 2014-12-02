@@ -9,11 +9,11 @@
 		
 			<div class="well">
 			
-					<?php echo ($reception) ? anchor('ramqregistration', 'Reception', array('class' => 'btn btn-default btn-lg btn-block')) : "" ?>
+					<?php echo ($reception) ? anchor('ramqregistration', 'Reception', array('class' => 'btn btn-info btn-lg btn-block')) : "" ?>
 				
-					<?php echo ($triage) ? anchor('triageoverview', 'Triage', array('class' => 'btn btn-default btn-lg btn-lg btn-block')) : "" ?>
+					<?php echo ($triage) ? anchor('triageoverview', 'Triage', array('class' => 'btn btn-primary btn-lg btn-lg btn-block')) : "" ?>
 				
-					<?php echo ($nurse) ? anchor('examinationoverview', 'Examination', array('class' => 'btn btn-default btn-lg btn-block')) : "" ?>
+					<?php echo ($nurse) ? anchor('examinationoverview', 'Examination', array('class' => 'btn btn-success btn-lg btn-block')) : "" ?>
 				
 				</div>
 			</div>

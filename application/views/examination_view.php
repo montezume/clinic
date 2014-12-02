@@ -1,15 +1,16 @@
-<div class="header"><h3 class="text-muted">Triage Patient<small class='pull-right' style='margin-right:10px;'>Signed in as <?php echo $this->session->userdata('logged_in')['USER_NAME']; ?></small></h3>
+<div class="header"><h3 class="text-muted">Examine Patient<small class='pull-right' style='margin-right:10px;'>Signed in as <?php echo $this->session->userdata('logged_in')['USER_NAME']; ?></small></h3>
 <!-- end header -->				
 </div>
 
 <div class ="well">
 
-	
+<?php echo form_open('examinationscreen'); ?>
 
-	<?php echo form_open('triagepatient'); ?>
-	<div class='form' role='form'>
-	<?php echo validation_errors(); ?>		
-		
+<div class='form' role='form'>
+<?php echo validation_errors(); ?>		
+
+
+</div>
 		<div class='form-group'>
 			<div class='row'>
 				<label for='ramq' class='col-sm-2 control-label'>RAMQ</label>
@@ -79,11 +80,11 @@
 				</div>
 			</div>
 		</div>
-			
-		<div class='form group'>
+		
+				<div class='form group'>
 			<div class='row'>
 				<label for='conditions' class='col-sm-2 control-label'>Primary Complaint</label>
-					<div class='col-lg-8 col-md-4 col-sm-10'><textarea class='form-control' style='margin-bottom:20px;' name='primaryComplaint' placeholder='Primary Complaint'></textarea>
+					<div class='col-lg-8 col-md-4 col-sm-10'><textarea readonly='readonly' class='form-control' style='margin-bottom:20px;' name='primaryComplaint'><?php echo $visit['PRIMARY_COMPLAINT'];?></textarea>
 					</div>
 			</div>
 		</div>
@@ -92,7 +93,7 @@
 			<div class='row'>
 				<label for='inputFirstSympton' class='col-sm-2 control-label'>First Symptom</label>
 					<div class='col-sm-10'>
-						<input type='text' class='form-control' name='firstSymptom' placeholder='First Symptom'>
+						<input type='text' readonly='readonly' class='form-control' name='firstSymptom' value="<?php echo $visit['SYMPTOM_1'];?>">
 					</div>
 				</div>
 		</div>
@@ -100,36 +101,21 @@
 			<div class='row'>
 				<label for='inputFirstSympton' class='col-sm-2 control-label'>Second Symptom</label>
 					<div class='col-sm-10'>
-						<input type='text' class='form-control' name='secondSymptom' placeholder='Second Symptom'>
+						<input type='text' readonly='readonly' class='form-control' name='secondSymptom' value="<?php echo $visit['SYMPTOM_2'];?>">
 					</div>
 				</div>
 		</div>
-	
-	
-	<div class='form-group'>
-
-		<div class="row">
-			<label for='inputQueue' class='col-sm-2 control-label'>Queue</label>
-		<div class='col-sm-10'>
-			<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
-			  <a href="#" onClick=" $('#queue').val('1');" class="btn btn-default label-danger" role="button">1</a>
-			  <a href="#" onClick=" $('#queue').val('2');" class="btn btn-default label-warning" role="button">2</a>
-			  <a href="#" onClick=" $('#queue').val('3');" class="btn btn-default label-info" role="button">3</a>
-			  <a href="#" onClick=" $('#queue').val('4');" class="btn btn-default label-success" role="button">4</a>
-			  <a href="#" onClick=" $('#queue').val('5');" class="btn btn-default label-default" role="button">5</a>
-			</div>
-		</div>
 			
-		</div>
-	</div>
-			<input type='hidden' class='form-control' name='queue' id='queue' value=''>
-
 			<div class='form-group'>
-				<button type="submit" class="btn btn-default" aria-label="Left Align"><span class='text-muted'>Submit</span>
-					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+				<button type="submit" class="btn btn-default" aria-label="Left Align"><span class='text-muted'>Finish</span>
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 				</button>
 			</div>
-		</div>
 
-<!-- end well -->	
+
+
+</form>
+
+
+
 </div>

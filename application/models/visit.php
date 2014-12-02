@@ -41,6 +41,15 @@ Class Visit extends CI_Model {
 		$this->db->where('VISIT_ID', $visit_id);
 		$this->db->update('VISIT', $data);
 	}
+	
+	/* Used by the doctor or nurse for the examination screen.
+	 */
+	function findVisit($visit_id) {
+		$this->db->select();
+		$this->db->where('VISIT_ID', $visit_id);
+		$query = $this->db->get('VISIT')->row_array();
+		return $query;
+	}
 
 }
 ?>
