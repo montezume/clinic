@@ -20,7 +20,8 @@
 	?>
 	
 	<div class='form-group'>
-		<label for='inputRAMQ'>Please enter patient's RAMQ number</label>
+		<label for='inputRAMQ'><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 
+Please enter patient's RAMQ number</label>
 		<input type='text' class='form-control' name='ramq' id='ramq' placeholder="Enter Patient's RAMQ Number">
 	</div>
 

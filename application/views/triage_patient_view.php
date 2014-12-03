@@ -4,6 +4,7 @@
 
 <div class ="well">
 
+
 	
 
 	<?php echo form_open('triagepatient'); ?>
@@ -125,7 +126,7 @@
 			<input type='hidden' class='form-control' name='queue' id='queue' value=''>
 
 			<div class='form-group'>
-				<button type="submit" class="btn btn-default" aria-label="Left Align"><span class='text-muted'>Submit</span>
+				<button type="submit" id ="submitBtn" class="btn btn-default" aria-label="Left Align"><span class='text-muted'>Submit</span>
 					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 				</button>
 			</div>
@@ -133,3 +134,16 @@
 
 <!-- end well -->	
 </div>
+
+<script language="JavaScript">
+document.getElementById('submitBtn').onclick = function(){
+    window.btn_clicked = true;       
+};
+window.onbeforeunload = function(){
+    if(!window.btn_clicked){
+        return 'Leaving without submitting will drop this patient into the void?';
+    }
+};
+</script>
+
+

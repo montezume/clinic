@@ -5,9 +5,38 @@
 
 		<div class ="jumbotron">
 		
-		<h1>Hi.</h1> 
+		<h1><small class="text-muted"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+ </small> Hi Jaya</h1> 
 		<h2 class='text-muted'>Welcome to our clinic.</h2>
 		
+		<hr>
+		<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Users</div>
+  <div class="panel-body">
+    <p>Below you can find the login information for built in users with various privileges.</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+    <tr>
+		<th><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+Username</th> <th><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Password</th> <th><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Privileges</th>
+ 	</tr>
+	<tr>
+		<td>John</td> <td>John</td> <td>Receptionist</td>
+	</tr>
+	<tr>
+		<td>Nurse</td> <td>Nurse</td> <td>Nurse</td>
+	</tr>
+	<tr>
+		<td>Triage</td> <td>Triage</td> <td>Triage</td>
+	</tr>
+	<tr>
+		<td>Everything</td> <td>Everything</td> <td>Everything</td>
+	</tr>
+  </table>
+</div>
 		
 		</div>
 			

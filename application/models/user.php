@@ -35,6 +35,8 @@ Class User extends CI_Model {
 			
 			else {
 				if ($login['INVALID_LOGIN'] < 5) {
+					// valid login, reset counter.
+					$this->resetLoginCount($login['USER_ID']);
 					return $login;
 				}
 				else {
@@ -70,6 +72,17 @@ Class User extends CI_Model {
 		$this->db->update('user', $data);
 		
 		return true;
+	}
+	
+	private function resetLoginCount($userId) {
+		$data = array(
+			'invalid_login' => 0
+			);
+		$this->db->where('user_id', $userId);
+		$this->db->update('user', $data);
+		
+		return true;
+
 	}
 
 }
