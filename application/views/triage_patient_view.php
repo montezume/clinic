@@ -141,7 +141,7 @@ document.getElementById('submitBtn').onclick = function(){
 };
 window.onbeforeunload = function(){
     if(!window.btn_clicked){
-        return 'Leaving without submitting will drop this patient into the void?';
+        return 'Leaving without submitting will drop this patient into the void.';
     }
 };
 </script>
