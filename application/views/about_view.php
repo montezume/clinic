@@ -12,10 +12,9 @@
 		<hr>
 		<div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Users</div>
+  <div class="panel-heading"><p>Users</p></div>
   <div class="panel-body">
-    <p>Below you can find the login information for built in users with various privileges.</p>
-  </div>
+    <p><small class="text-muted">Below you can find the login information for built in users with various privileges.</small></p></div>
 
   <!-- Table -->
   <table class="table">
@@ -24,7 +23,7 @@
 Username</th> <th><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Password</th> <th><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Privileges</th>
  	</tr>
 	<tr>
-		<td>John</td> <td>John</td> <td>Receptionist</td>
+		<td>John</td><td>John</td><td>Receptionist</td>
 	</tr>
 	<tr>
 		<td>Nurse</td> <td>Nurse</td> <td>Nurse</td>

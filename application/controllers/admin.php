@@ -7,7 +7,6 @@ class Admin extends CI_Controller
     function __construct() {
         parent::__construct();
 		$this->load->library('form_validation');
-
     }
 
 	function index() {
@@ -20,24 +19,33 @@ class Admin extends CI_Controller
 			if (!$this->session->userdata('logged_in')['ADMIN']) {
 				redirect('dashboard', 'refresh');
 			}
-			// user has correct privileges
-			$this->showAdmin();	
+			
+			 // user hasn't submitted the form.
+			 if (!($this->input->server('REQUEST_METHOD') === 'POST')) {	
+					$this->showAdmin(false);	
+				} else {
+					// load model.
+					$results = array ();
+					
+					// form is submitted, display results...
+					$this->showAdmin($results);	
+
+				
+				}
+			
 
 		}
 
 	} 
 	
-	function showAdmin() {
+	function showAdmin($results) {
 			
 			$headerData = array(
 						'title' => 'CQS - Admin'
 					);
-					
 			$this->load->view('header', $headerData);
-			$this->load->view('admin_view');
+			$this->load->view('admin_view', $results);
 			$this->load->view('footer');
-
-	
 	}
 
 } 

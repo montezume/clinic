@@ -13,27 +13,27 @@
 						
 						<label for="avgTriageTime" class="control-label col-sm-4">To be triaged</label>
 						<div class="col-sm-4">
-						<select class="form-control">
-							  <option>1</option>
-							  <option>2</option>
-							  <option>3</option>
-							  <option>4</option>
-							  <option>5</option>
+							<select class="form-control">
+								<option value="1">1 hour</option>
+								<option value="2">2 hours</option>
+								<option value="4">4 hours</option>
+								<option value="12">12 hours</option>
+								<option value="24">24 hours</option>
 							</select>	
-							</div>
+						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="avgTimeSpentInEachCode" class="control-label col-sm-4">Spent in each code.</label>
 								<div class="col-sm-4">
-						<select class="form-control">
-							  <option>1</option>
-							  <option>2</option>
-							  <option>3</option>
-							  <option>4</option>
-							  <option>5</option>
-							</select>	
-						</div>
+									<select class="form-control">
+										<option value="1">1 hour</option>
+										<option value="2">2 hours</option>
+										<option value="4">4 hours</option>
+										<option value="12">12 hours</option>
+										<option value="24">24 hours</option>
+									</select>	
+								</div>
 
 					</div>
 					
@@ -42,8 +42,6 @@
                             <input type="submit" class="btn btn-primary col-sm-2" id="connectButton" value="Submit"></input>
                         </div>
                     </div>							
-					
-				
 				</div>
 				
 				</form>
