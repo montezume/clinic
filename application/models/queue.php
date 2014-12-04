@@ -45,10 +45,9 @@ Class Queue extends CI_Model {
 		
 			$this->db->select("code");
 			$this->db->where_in('visit_id');
-			$this->db->get('VISIT');
 			$this->db->order_by('registration_time', 'desc');
 			$this->db->limit(1);
-			$query = $this->db->get()->row_array();
+			$query = $this->db->get('VISIT')->row_array();
 			return $query['code'];
 		}
 		

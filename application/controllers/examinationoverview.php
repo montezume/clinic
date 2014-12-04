@@ -20,19 +20,34 @@ class ExaminationOverview extends CI_Controller
         if (!$this->session->userdata('logged_in') || !$this->session->userdata('logged_in')['NURSE']) {
             redirect('login', 'refresh');
 		} else {
+		
+				$queueLengths = array();
+				$totalQueueLength = 0;
+				
+				for ($i = 1; $i < 6; $i++) {
+					$currentQueueLength = $this->getLengthOfQueue($i);
+					$queueLengths[] = $this->getLengthOfQueue($i);
+					$totalQueueLength += $currentQueueLength;
+					}
+			
+
 			 // user hasn't submitted the form.
 			 if (!($this->input->server('REQUEST_METHOD') === 'POST')) {	
-					$this->showExaminationOverview(false);
+					$this->showExaminationOverview($queueLengths, $totalQueueLength);
 				}
 			// redirect to triage screen.
 			else {
 				// form is submitted, remove a patient from the queue.
-				
-				$nextVisitId = $this->getNextPatient();
+				if ($totalQueueLength != 0) {
+					$nextVisitId = $this->getNextPatient();
+					}
+				else {
+					$nextVisitId = -1;
+				}
 				// there are no patients in queue.
 				if ($nextVisitId == -1) {
 					// show view again.
-					$this->showExaminationOverview();
+					$this->showExaminationOverview($queueLengths, $totalQueueLength);
 				}
 				// a patient was dequeued from queue.
 				else {
@@ -46,21 +61,12 @@ class ExaminationOverview extends CI_Controller
 		}
 	}
 	
-	function showExaminationOverview() {
+	function showExaminationOverview($queueLengths, $totalQueueLength) {
 		$headerData = array(
 						'title' => 'CQS - Examination Overview'
 					);
 		$this->load->view('header', $headerData);
-		
-		$queueLengths = array();
-		$totalQueueLength = 0;
-				
-		for ($i = 1; $i < 6; $i++) {
-			$currentQueueLength = $this->getLengthOfQueue($i);
-			$queueLengths[] = $this->getLengthOfQueue($i);
-			$totalQueueLength += $currentQueueLength;
-		}
-						
+								
 		$viewData = 
 			array(
 				'totalQueueLength' => $totalQueueLength,
@@ -106,9 +112,7 @@ class ExaminationOverview extends CI_Controller
 					break;
 				case 1:
 				case 4:
-				case 8:
-					//$nextVisitId = $this->queue->getNextPatient('3');
-					
+				case 8:					
 					$queueToUse = 3;
 					// If both queues aren't empty, check registration time of queue 2
 					// and determine who came first.
@@ -124,14 +128,30 @@ class ExaminationOverview extends CI_Controller
 				case 3:
 				case 9:
 					$queueToUse = 4;
+					// check registration time of queue 2, queue 3, queue 4
+					// and determine who came first.
 					
-					// TODO peek to check that first code 2/3 patient didn't arrive first.
-					$nextVisitId = $this->queue->getNextPatient('4');
-					break;
+					$queueToUse = $this->queue->compareQueues('2', '3', '4');
+					if ($queueToUse != -1) {
+						$nextVisitId = $this->queue->getNextPatient($queueToUse);
+						}
+					else {
+						$nextVisitId = -1;
+					}
+					break;		
 				case 6:
-					// TODO peek to check that first code 2/3/4 patient didn't arrive first.
-					$nextVisitId = $this->queue->getNextPatient('5');
-					break;
+					$queueToUse = 5;
+					// check registration time of queue 2, queue 3, queue 4
+					// and determine who came first.
+					
+					$queueToUse = $this->queue->compareQueues('2', '3', '4', '5');
+					if ($queueToUse != -1) {
+						$nextVisitId = $this->queue->getNextPatient($queueToUse);
+						}
+					else {
+						$nextVisitId = -1;
+					}
+					break;		
 					
 				} // end switch
 				
