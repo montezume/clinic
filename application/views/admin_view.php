@@ -11,9 +11,9 @@
 				<div class="form-horizontal" role="form">
 					<div class="form-group">
 						
-						<label for="avgTriageTime" class="control-label col-sm-4">To be triaged</label>
+						<label for="avgTriageTime" class="control-label col-sm-4">To be triaged in the last </label>
 						<div class="col-sm-4">
-							<select class="form-control">
+							<select class="form-control" name="toBeTriaged">
 								<option value="1">1 hour</option>
 								<option value="2">2 hours</option>
 								<option value="4">4 hours</option>
@@ -26,7 +26,7 @@
 					<div class="form-group">
 						<label for="avgTimeSpentInEachCode" class="control-label col-sm-4">Spent in each code.</label>
 								<div class="col-sm-4">
-									<select class="form-control" name='test'>
+									<select class="form-control" name='timeForCode'>
 										<option value="1">1 hour</option>
 										<option value="2">2 hours</option>
 										<option value="4">4 hours</option>

@@ -61,12 +61,26 @@ Class Visit extends CI_Model {
 	 */
 	function getAverageTimeBeforeTriage($hours) {
 	
-		$query = $this->db->query("select avg(TIMESTAMPDIFF(MINUTE, REGISTRATION_TIME, TRIAGE_TIME)) 
-		AS average FROM VISIT WHERE REGISTRATION_TIME >= NOW() - INTERVAL $hours hour;")->row_array();
-		return $query;
-		
-
+		$sql ="select avg(TIMESTAMPDIFF(MINUTE, REGISTRATION_TIME, TRIAGE_TIME)) 
+		AS average FROM VISIT WHERE REGISTRATION_TIME >= NOW() - INTERVAL ? hour;";
+		$query = $this->db->query($sql, array($hours))->row_array();
+		return $query['average'];
 	}
+	
+		function getAverageTimeSpentInEachCode($hours) {
+	
+		$average = 0.0;
+		
+		for ($code = 1; $code <= 5; $code ++) {
+			$sql ="select avg(TIMESTAMPDIFF(MINUTE, TRIAGE_TIME, EXAMINATION_TIME)) 
+			AS average FROM VISIT WHERE CODE = ? AND TRIAGE_TIME >= NOW() - INTERVAL ? hour;";
+			$query = $this->db->query($sql, array($code, $hours))->row_array();
+			$average = $average + $query['average'];
+		}
+		
+		return $average;
+	}
+	
 
 }
 ?>
