@@ -14,11 +14,11 @@
 						<label for="avgTriageTime" class="control-label col-sm-4">To be triaged in the last </label>
 						<div class="col-sm-4">
 							<select class="form-control" name="toBeTriaged">
-								<option value="1">1 hour</option>
-								<option value="2">2 hours</option>
-								<option value="4">4 hours</option>
-								<option value="12">12 hours</option>
-								<option value="24">24 hours</option>
+								<option value="1" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 1) ? "selected" : "" ?> >1 hour</option>
+								<option value="2" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 2) ? "selected" : "" ?> >2 hours</option>
+								<option value="4" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 4) ? "selected" : "" ?> >4 hours</option>
+								<option value="12" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 12) ? "selected" : "" ?> >12 hours</option>
+								<option value="24" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 24) ? "selected" : "" ?> >24 hours</option>
 							</select>	
 						</div>
 					</div>
@@ -27,11 +27,11 @@
 						<label for="avgTimeSpentInEachCode" class="control-label col-sm-4">Spent in each code.</label>
 								<div class="col-sm-4">
 									<select class="form-control" name='timeForCode'>
-										<option value="1">1 hour</option>
-										<option value="2">2 hours</option>
-										<option value="4">4 hours</option>
-										<option value="12">12 hours</option>
-										<option value="24">24 hours</option>
+										<option value="1" <?php echo (isset($codeTimeSelected) && $codeTimeSelected == 1) ? "selected" : "" ?> >1 hour</option>
+										<option value="2" <?php echo (isset($codeTimeSelected) && $codeTimeSelected == 2) ? "selected" : "" ?>>2 hours</option>
+										<option value="4" <?php echo (isset($codeTimeSelected) && $codeTimeSelected == 4) ? "selected" : "" ?>>4 hours</option>
+										<option value="12" <?php echo (isset($codeTimeSelected) && $codeTimeSelected == 12) ? "selected" : "" ?>>12 hours</option>
+										<option value="24" <?php echo (isset($codeTimeSelected) && $codeTimeSelected == 24) ? "selected" : "" ?>>24 hours</option>
 									</select>	
 								</div>
 

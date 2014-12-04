@@ -60,24 +60,27 @@ Class Visit extends CI_Model {
 	/* Returns the average time spent between registration and triage over the last given hours.
 	 */
 	function getAverageTimeBeforeTriage($hours) {
-	
 		$sql ="select avg(TIMESTAMPDIFF(MINUTE, REGISTRATION_TIME, TRIAGE_TIME)) 
 		AS average FROM VISIT WHERE REGISTRATION_TIME >= NOW() - INTERVAL ? hour;";
 		$query = $this->db->query($sql, array($hours))->row_array();
-		return $query['average'];
+		$average = $query['average'];
+		
+		if ($average == null) {
+			$average = 0.0;
+		}
+		return $average;
 	}
 	
-		function getAverageTimeSpentInEachCode($hours) {
-	
-		$average = 0.0;
-		
-		for ($code = 1; $code <= 5; $code ++) {
-			$sql ="select avg(TIMESTAMPDIFF(MINUTE, TRIAGE_TIME, EXAMINATION_TIME)) 
+		function getAverageTimeSpentInEachCode($code, $hours) {
+			
+		$sql ="select avg(TIMESTAMPDIFF(MINUTE, TRIAGE_TIME, EXAMINATION_TIME)) 
 			AS average FROM VISIT WHERE CODE = ? AND TRIAGE_TIME >= NOW() - INTERVAL ? hour;";
-			$query = $this->db->query($sql, array($code, $hours))->row_array();
-			$average = $average + $query['average'];
-		}
+		$query = $this->db->query($sql, array($code, $hours))->row_array();
+		$average = $query['average'];
 		
+		if ($average == null) {
+			$average = 0.0;
+		}
 		return $average;
 	}
 	

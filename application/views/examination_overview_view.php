@@ -50,7 +50,7 @@
 	<span id="helpBlock" class="help-block">Fourth Queue</span>			
 	<div class="progress">
 
-		<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue4 != 0) ? (($lengthOfQueue3 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue4" ?>
+		<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue4 != 0) ? (($lengthOfQueue4 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue4" ?>
 				<span class="sr-only"><?php echo "$lengthOfQueue4 patients in queue 4" ?></span>
 		</div>
 

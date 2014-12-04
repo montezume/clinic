@@ -26,21 +26,26 @@ class Admin extends CI_Controller
 				} else {
 					// load model.
 					$this->load->model('visit');
+					// get post info - needs to be sent to view to make it sticky
 					$triageQueryTime = $_POST['toBeTriaged'];
 					$codeQueryTime = $_POST['timeForCode'];
 					$triageResults = $this->visit->getAverageTimeBeforeTriage($triageQueryTime);
-					$codeResults = $this->visit->getAverageTimeSpentInEachCode($codeQueryTime);
+					
+					$codeResults = array();
+					// get average time spent in each queue, and put it into an array.
+					for ($code = 1; $code < 6; $code ++) {
+						$codeResults[$code] = $this->visit->getAverageTimeSpentInEachCode($code, $codeQueryTime);
+					}
+					
 					// form is submitted, display results...
-					var_dump($triageResults);
-					var_dump($codeResults);
-					$data = array(
+					$results = array(
 					'triageTimeSelected' => $triageQueryTime,
 					'triageResults' => $triageResults, 
 					'codeTimeSelected' => $codeQueryTime,
 					'codeResults' => $codeResults
 					);
-					var_dump($data);
-					$this->showAdmin($data);	
+					var_dump($results);
+					$this->showAdmin($results);	
 
 				
 				}
