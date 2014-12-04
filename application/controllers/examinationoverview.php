@@ -27,6 +27,7 @@ class ExaminationOverview extends CI_Controller
 			// redirect to triage screen.
 			else {
 				// form is submitted, remove a patient from the queue.
+				
 				$nextVisitId = $this->getNextPatient();
 				// there are no patients in queue.
 				if ($nextVisitId == -1) {
@@ -37,8 +38,9 @@ class ExaminationOverview extends CI_Controller
 				else {
 					// the next screen requires visit ID 
 					$this->session->set_flashdata('visit_id', $nextVisitId);
+					
+					//var_dump($this->compareTwoPatients('2', '3'));
 					redirect("examinationscreen", 'refresh');
-
 				}
 			}
 		}
@@ -105,11 +107,24 @@ class ExaminationOverview extends CI_Controller
 				case 1:
 				case 4:
 				case 8:
-					// TODO peek to check that first code 2 patient didn't arrive first.					
-					$nextVisitId = $this->queue->getNextPatient('3');
+					//$nextVisitId = $this->queue->getNextPatient('3');
+					
+					$queueToUse = 3;
+					// If both queues aren't empty, check registration time of queue 2
+					// and determine who came first.
+					
+					$queueToUse = $this->queue->compareQueues('2', '3');
+					if ($queueToUse != -1) {
+						$nextVisitId = $this->queue->getNextPatient($queueToUse);
+						}
+					else {
+						$nextVisitId = -1;
+					}
 					break;		
 				case 3:
 				case 9:
+					$queueToUse = 4;
+					
 					// TODO peek to check that first code 2/3 patient didn't arrive first.
 					$nextVisitId = $this->queue->getNextPatient('4');
 					break;
@@ -132,7 +147,6 @@ class ExaminationOverview extends CI_Controller
 		}
 				
 	}
-
 	
 	function getLengthOfQueue($queueName) {
 		// load queue model.

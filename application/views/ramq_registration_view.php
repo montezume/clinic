@@ -26,7 +26,7 @@ Please enter patient's RAMQ number</label>
 	</div>
 
 	<div class='form-group'>
-		<button type='submit' class='btn' value='Submit'>Submit</button>
+		<button type='submit' class='btn btn-primary' value='Submit'>Submit</button>
 	</div>
 
 <!-- end form-->

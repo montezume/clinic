@@ -8,11 +8,19 @@
 		
 				<?php echo validation_errors(); ?>				
 				<?php echo form_open('admin'); ?>
-				<h3>Statistics: average time<h class="pull-right"><span class="glyphicon glyphicon-time pull-right" aria-hidden="true"></span> </h3>
+				<h2>Statistics:<h class="pull-right"><span class="glyphicon glyphicon-time pull-right" aria-hidden="true"></span> </h2>
 				<div class="form-horizontal" role="form">
+					<div class="row">
+					<div class="col-sm-4">
+					<h3>Query</h3>
+					</div>
+					<div class="col-sm-4">
+					<h3>Time period</h3>
+					</div>
+					</div>
 					<div class="form-group">
 						
-						<label for="avgTriageTime" class="control-label col-sm-4">To be triaged in the last </label>
+						<label for="avgTriageTime" class="control-label col-sm-4" style="text-align:left">Average time spent to be triaged.</label>
 						<div class="col-sm-4">
 							<select class="form-control" name="toBeTriaged">
 								<option value="1" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 1) ? "selected" : "" ?> >1 hour</option>
@@ -25,7 +33,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="avgTimeSpentInEachCode" class="control-label col-sm-4">Spent in each code.</label>
+						<label for="avgTimeSpentInEachCode" class="control-label col-sm-4" style="text-align:left;">Average time spent in each code.</label>
 								<div class="col-sm-4">
 									<select class="form-control" name='timeForCode'>
 										<option value="1" <?php echo (isset($codeTimeSelected) && $codeTimeSelected == 1) ? "selected" : "" ?> >1 hour</option>

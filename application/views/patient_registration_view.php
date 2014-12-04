@@ -129,7 +129,7 @@
 			
 			
 			echo "<div class='form-group'><div class='row'><div class='col-sm-2'>";
-			echo "<button type='submit' class='btn' value='Submit'>Add to Queue</button></div>";
+			echo "<button type='submit' class='btn btn-primary' value='Submit'>Add to Queue</button></div>";
 			echo "</div></div></div>";
 			?>
 

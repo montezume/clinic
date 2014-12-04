@@ -11,7 +11,6 @@ class TriageOverview extends CI_Controller
     }
     function index()
     {		
-	
 		$this->form_validation->set_error_delimiters("<div class='alert alert-danger' role='alert'>
 		<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
 		<span class='sr-only'>Error:</span>", '</div>');
@@ -38,7 +37,6 @@ class TriageOverview extends CI_Controller
 					// the triage screen requires visit ID 
 					$this->session->set_flashdata('visit_id', $nextVisitId);
 					redirect("triagepatient", 'refresh');
-
 				}
 			}
 		}
