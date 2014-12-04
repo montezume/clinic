@@ -1,4 +1,4 @@
-<div class="header"><h3 class="text-muted">Enter RAMQ<small class='pull-right' style='margin-right:10px;'>Signed in as <?php echo $this->session->userdata('logged_in')['USER_NAME']; ?></small></h3>
+<div class="header"><h3 class="text-muted">RAMQ Registration<small class='pull-right' style='margin-right:10px;'>Signed in as <?php echo $this->session->userdata('logged_in')['USER_NAME']; ?></small></h3>
 <!-- end header -->				
 </div>
 
@@ -8,7 +8,6 @@
 <?php echo form_open('ramqregistration'); ?>
 <div class='form' role='form'>
 <?php echo validation_errors(); ?>				
-	
 	
 	<?php if ($added) {
 
