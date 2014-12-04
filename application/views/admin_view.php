@@ -1,8 +1,9 @@
+		<script src="<?php echo base_url('assets/js/Chart.js'); ?>"></script>
+
 		<div class="header"><h3 class="text-muted">Admin<small class='pull-right' style='margin-right:10px;'>Signed in as <?php echo (isset($this->session->userdata('logged_in')['USER_NAME'])) ? $this->session->userdata('logged_in')['USER_NAME'] : "anonymous" ;?></small></h3>
 		<!-- end header -->				
 		</div>
 		
-
 		<div class ="well">
 		
 				<?php echo validation_errors(); ?>				
@@ -43,8 +44,45 @@
                         </div>
                     </div>							
 				</div>
-				
 				</form>
+				
+				<div class="row">
+					<div class="col-sm-2 col-sm-offset-4"> <?php echo (isset($triageResults)) ? "<canvas id='myChart' width='400' height='400'></canvas>" : "" ?>
+					</div>
+
+				</div>	
+		
+				<script>
+				var ctx = document.getElementById("myChart").getContext("2d");
+				
+
+				var data = [
+					{
+						value: <?php echo $codeResults[1] ?>,
+						color:"#F7464A",
+						highlight: "#FF5A5E",
+						label: "Queue 1"
+					},
+					{
+						value: <?php echo $codeResults[2] ?>,
+						color: "#46BFBD",
+						highlight: "#5AD3D1",
+						label: "Green"
+					},
+					{
+						value: <?php echo $codeResults[3] ?>,
+						color: "#46BFBD",
+						highlight: "#5AD3D1",
+						label: "Green"
+					}
+				]
+				new Chart(ctx).Doughnut(data, {
+    animateScale: true
+});
+				var myPieChart = new Chart(ctx[0]).Pie(data,options);
+				
+				</script>
+			
 		
 		</div>
 			
