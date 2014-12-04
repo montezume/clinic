@@ -36,22 +36,57 @@
 									</select>	
 								</div>
 
+
 					</div>
 					
 					<div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
+                        <div class="col-sm-offset-0 col-sm-12">
                             <input type="submit" class="btn btn-primary col-sm-2" id="connectButton" value="Submit"></input>
                         </div>
                     </div>							
+
+				<?php 
+				
+				// It's nice to pluralize properly.
+				$codeTimeFrame = ($codeTimeSelected > 1) ? "hours" : "hour";
+				$triageTimeFrame = ($triageTimeSelected > 1) ? "hours" : "hour";
+				
+				if (isset($triageResults)) { echo "
+			
+				<hr>
+				<div class='well'>
+				<div class='row'>
+					<div class='col-sm-6 col-md-4'>
+						<div class='thumbnail'>
+						<canvas id='myChart' width='290' height='290'></canvas>
+						<div class='caption'>
+						<h4>Average time spent in each code</h4>
+						<p>The total average waiting time over the last $codeTimeSelected $codeTimeFrame was $totalAverageTime minutes</p>
+					  </div>
+					</div>
+					</div>
+					
+						<div class='col-sm-6 col-md-4'>
+						<div class='thumbnail'><img src=";
+						
+						echo base_url('assets/images/triage.jpg');
+						echo ">
+						<div class='caption'>
+						<h4>Average time spent to be triaged</h4>
+						<p>The average triage time over the last $triageTimeSelected $triageTimeFrame was $triageResults minutes</p>
+					  </div>
+					</div>
+					</div>
+				</div>
+				</div>
+				";
+				}
+				?>
+				
+
 				</div>
 				</form>
-				
-				<div class="row">
-					<div class="col-sm-2 col-sm-offset-4"> <?php echo (isset($triageResults)) ? "<canvas id='myChart' width='400' height='400'></canvas>" : "" ?>
-					</div>
-
-				</div>	
-		
+						
 				<script>
 				var ctx = document.getElementById("myChart").getContext("2d");
 				
@@ -59,22 +94,29 @@
 				var data = [
 					{
 						value: <?php echo $codeResults[1] ?>,
-						color:"#F7464A",
-						highlight: "#FF5A5E",
+						color:"red",
 						label: "Queue 1"
 					},
 					{
 						value: <?php echo $codeResults[2] ?>,
-						color: "#46BFBD",
-						highlight: "#5AD3D1",
-						label: "Green"
+						color: "yellow",
+						label: "Queue 2"
 					},
 					{
 						value: <?php echo $codeResults[3] ?>,
-						color: "#46BFBD",
-						highlight: "#5AD3D1",
-						label: "Green"
-					}
+						color: "blue",
+						label: "Queue 3"
+					},
+					{
+						value: <?php echo $codeResults[4] ?>,
+						color: "green",
+						label: "Queue 4"
+					},
+					{
+						value: <?php echo $codeResults[5] ?>,
+						color:"grey",
+						label: "Queue 5"
+					},
 				]
 				new Chart(ctx).Doughnut(data, {
     animateScale: true

@@ -32,19 +32,24 @@ class Admin extends CI_Controller
 					$triageResults = $this->visit->getAverageTimeBeforeTriage($triageQueryTime);
 					
 					$codeResults = array();
+					$totalAverageTime = 0.0;
 					// get average time spent in each queue, and put it into an array.
 					for ($code = 1; $code < 6; $code ++) {
-						$codeResults[$code] = $this->visit->getAverageTimeSpentInEachCode($code, $codeQueryTime);
+						$codeResults[$code] = number_format($this->visit->getAverageTimeSpentInEachCode($code, $codeQueryTime), 1);
+						$totalAverageTime .= $codeResults[$code];
 					}
+					
+					$totalAverageTime = $totalAverageTime / 5.0;
 					
 					// form is submitted, display results...
 					$results = array(
 					'triageTimeSelected' => $triageQueryTime,
-					'triageResults' => $triageResults, 
+					'triageResults' => number_format($triageResults, 1), 
 					'codeTimeSelected' => $codeQueryTime,
-					'codeResults' => $codeResults
+					'codeResults' => $codeResults,
+					'totalAverageTime' => number_format($totalAverageTime, 1)
 					);
-					var_dump($results);
+					//var_dump($results);
 					$this->showAdmin($results);	
 
 				
