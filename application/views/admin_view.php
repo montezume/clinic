@@ -8,7 +8,7 @@
 		
 				<?php echo validation_errors(); ?>				
 				<?php echo form_open('admin'); ?>
-				<h2>Statistics:<h class="pull-right"><span class="glyphicon glyphicon-time pull-right" aria-hidden="true"></span> </h2>
+				<h2><span class="glyphicon glyphicon-time text-muted" aria-hidden="true"></span> Statistics</h2>
 				<div class="form-horizontal" role="form">
 					<div class="row">
 					<div class="col-sm-4">
@@ -89,7 +89,7 @@
 								<canvas id='myChart' width='290' height='290'></canvas>
 									<div class='caption'>
 										<h4>Average time spent in each code</h4>
-										<p>The total average waiting time over the last $codeTimeSelected $codeTimeFrame was $totalAverageTime minutes</p>
+										<p>The total average waiting time over the last $codeTimeSelected $codeTimeFrame was $totalAverageTime minutes.</p>
 									</div>
 							</div>
 						</div>
@@ -100,7 +100,7 @@
 								echo ">
 								<div class='caption'>
 									<h4>Average time spent to be triaged</h4>
-									<p>The average triage time over the last $triageTimeSelected $triageTimeFrame was $triageResults minutes</p>
+									<p>The average triage time over the last $triageTimeSelected $triageTimeFrame was $triageResults minutes.</p>
 								</div>
 							</div>
 						</div>
@@ -109,7 +109,7 @@
 								<canvas id='myBarChart' width='290' height='290'></canvas>
 								<div class='caption'>
 									<h4>Total patients examined in each code</h4>
-									<p>The total patients examined over the last $totalPatientsTimeSelected $totalPatientsTimeFrame was $totalPatients</p>
+									<p>The total patients examined over the last $totalPatientsTimeSelected $totalPatientsTimeFrame was $totalPatients.</p>
 								</div>
 							</div>
 						</div>
