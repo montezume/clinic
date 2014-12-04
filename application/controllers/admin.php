@@ -29,16 +29,25 @@ class Admin extends CI_Controller
 					// get post info - needs to be sent to view to make it sticky
 					$triageQueryTime = $_POST['toBeTriaged'];
 					$codeQueryTime = $_POST['timeForCode'];
+					$totalPatientsQueryTime = $_POST['totalPatientsQueryTime'];
+					
 					$triageResults = $this->visit->getAverageTimeBeforeTriage($triageQueryTime);
 					
 					$codeResults = array();
 					$totalAverageTime = 0.0;
-					// get average time spent in each queue, and put it into an array.
+					$totalPatientsPerCode = array();
+					$totalPatients = 0;
+					// get average time spent in each queue, and put into an array
+					// as well as total patients examined in each queue.
 					for ($code = 1; $code < 6; $code ++) {
 						$codeResults[$code] = number_format($this->visit->getAverageTimeSpentInEachCode($code, $codeQueryTime), 1);
+						$totalPatientsPerCode[$code] = $this->visit->getTotalPatientsExaminedInCode($code, $totalPatientsQueryTime);
+						
 						$totalAverageTime .= $codeResults[$code];
+						$totalPatients = $totalPatients + $totalPatientsPerCode[$code];
+
 					}
-					
+										
 					$totalAverageTime = $totalAverageTime / 5.0;
 					
 					// form is submitted, display results...
@@ -47,9 +56,12 @@ class Admin extends CI_Controller
 					'triageResults' => number_format($triageResults, 1), 
 					'codeTimeSelected' => $codeQueryTime,
 					'codeResults' => $codeResults,
-					'totalAverageTime' => number_format($totalAverageTime, 1)
+					'totalAverageTime' => number_format($totalAverageTime, 1),
+					'totalPatientsPerCode' => $totalPatientsPerCode,
+					'totalPatients' => $totalPatients,
+					'totalPatientsTimeSelected' => $totalPatientsQueryTime
 					);
-					//var_dump($results);
+					
 					$this->showAdmin($results);	
 
 				

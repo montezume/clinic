@@ -73,7 +73,7 @@ Class Visit extends CI_Model {
 	
 		function getAverageTimeSpentInEachCode($code, $hours) {
 			
-		$sql ="select avg(TIMESTAMPDIFF(MINUTE, TRIAGE_TIME, EXAMINATION_TIME)) 
+		$sql = "select avg(TIMESTAMPDIFF(MINUTE, TRIAGE_TIME, EXAMINATION_TIME)) 
 			AS average FROM VISIT WHERE CODE = ? AND TRIAGE_TIME >= NOW() - INTERVAL ? hour;";
 		$query = $this->db->query($sql, array($code, $hours))->row_array();
 		$average = $query['average'];
@@ -82,6 +82,14 @@ Class Visit extends CI_Model {
 			$average = 0.0;
 		}
 		return $average;
+	}
+	
+	function getTotalPatientsExaminedInCode($code, $hours) {
+		$sql = "select count(*) as code from visit WHERE code = ? 
+		AND examination_time != 0 AND EXAMINATION_TIME >= NOW() - INTERVAL ? hour";
+		$query = $this->db->query($sql, array($code, $hours))->row_array();
+		$totalPatients = $query['code'];
+		return $totalPatients;
 	}
 	
 
