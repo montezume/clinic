@@ -30,7 +30,6 @@ Class Visit extends CI_Model {
 		$this->db->set('EXAMINATION_TIME', 'NOW()', FALSE);
 		$this->db->where('VISIT_ID', $visit_id);
 		$this->db->update('VISIT');
-
 	}
 	/*
 	 * Used by the nurse after triaging.
@@ -58,14 +57,13 @@ Class Visit extends CI_Model {
 		return $query;
 	}
 	
+	/* Returns the average time spent between registration and triage over the last given hours.
+	 */
 	function getAverageTimeBeforeTriage($hours) {
-		$this->db->select('avg(TIMESTAMPDIFF(SECOND, registration_time, triage_time) / 60)');
-		$this->db->where('TRIAGE !=', $hours);
-		$this->db->where('REGISTRATION TIME > $hours');
-
-		// SELECT avg(TIMESTAMPDIFF(SECOND, registration_time, triage_time) / 60) from VISIT where triage_time != 0);
-		
-		//this->db->select_avg('');
+	
+		$query = $this->db->query("select avg(TIMESTAMPDIFF(MINUTE, REGISTRATION_TIME, TRIAGE_TIME)) 
+		AS average FROM VISIT WHERE REGISTRATION_TIME >= NOW() - INTERVAL $hours hour;")->row_array();
+		return $query;
 		
 
 	}

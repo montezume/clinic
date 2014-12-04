@@ -25,9 +25,13 @@ class Admin extends CI_Controller
 					$this->showAdmin(false);	
 				} else {
 					// load model.
-					$results = array ();
+					$this->load->model('visit');
+					
+					$results = $this->visit->getAverageTimeBeforeTriage(1);
 					
 					// form is submitted, display results...
+					var_dump($_POST['test']);
+					var_dump($results);
 					$this->showAdmin($results);	
 
 				
