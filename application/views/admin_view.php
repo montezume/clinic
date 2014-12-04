@@ -8,7 +8,7 @@
 		
 				<?php echo validation_errors(); ?>				
 				<?php echo form_open('admin'); ?>
-				<h2>Average time spent... <h class="pull-right"><span class="glyphicon glyphicon-time pull-right" aria-hidden="true"></span> </h2>
+				<h3>Statistics: average time<h class="pull-right"><span class="glyphicon glyphicon-time pull-right" aria-hidden="true"></span> </h3>
 				<div class="form-horizontal" role="form">
 					<div class="form-group">
 						
@@ -48,8 +48,11 @@
 				<?php 
 				
 				// It's nice to pluralize properly.
+				
+				if (isset($triageResults)) {
 				$codeTimeFrame = ($codeTimeSelected > 1) ? "hours" : "hour";
 				$triageTimeFrame = ($triageTimeSelected > 1) ? "hours" : "hour";
+				}
 				
 				if (isset($triageResults)) { echo "
 			
@@ -94,22 +97,22 @@
 				var data = [
 					{
 						value: <?php echo $codeResults[1] ?>,
-						color:"red",
+						color:"#d9534f",
 						label: "Queue 1"
 					},
 					{
 						value: <?php echo $codeResults[2] ?>,
-						color: "yellow",
+						color: "#f0ad4e",
 						label: "Queue 2"
 					},
 					{
 						value: <?php echo $codeResults[3] ?>,
-						color: "blue",
+						color: "#428BCA",
 						label: "Queue 3"
 					},
 					{
 						value: <?php echo $codeResults[4] ?>,
-						color: "green",
+						color: "#5cb85c",
 						label: "Queue 4"
 					},
 					{
