@@ -42,8 +42,7 @@ class Admin extends CI_Controller
 					for ($code = 1; $code < 6; $code ++) {
 						$codeResults[$code] = number_format($this->visit->getAverageTimeSpentInEachCode($code, $codeQueryTime), 1);
 						$totalPatientsPerCode[$code] = $this->visit->getTotalPatientsExaminedInCode($code, $totalPatientsQueryTime);
-						
-						$totalAverageTime .= $codeResults[$code];
+						$totalAverageTime = $totalAverageTime + $codeResults[$code];
 						$totalPatients = $totalPatients + $totalPatientsPerCode[$code];
 
 					}
