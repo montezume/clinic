@@ -24,7 +24,7 @@
 
 	<div class="progress">
 		
-		<div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue1 != 0) ? (($lengthOfQueue1 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue1" ?>
+		<div class="progress-bar progress-bar-danger <?php echo ($lengthOfQueue1 != 0) ? "progress-bar-striped active" : "" ?>" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue1 != 0) ? (($lengthOfQueue1 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue1" ?>
 				<span class="sr-only"><?php echo "$lengthOfQueue1 patients in queue 1" ?></span>
 		</div>
 	</div>
@@ -32,7 +32,7 @@
 	<span id="helpBlock" class="help-block">Second Queue</span>			
 	<div class="progress">
 
-		<div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue2 != 0) ? (($lengthOfQueue2 / $totalQueueLength) * 100) : 5 ; ?>%;"><?php echo "$lengthOfQueue2" ?>
+		<div class="progress-bar progress-bar-warning <?php echo ($lengthOfQueue2 != 0) ? "progress-bar-striped active" : "" ?>" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue2 != 0) ? (($lengthOfQueue2 / $totalQueueLength) * 100) : 5 ; ?>%;"><?php echo "$lengthOfQueue2" ?>
 				<span class="sr-only"><?php echo "$lengthOfQueue2 patients in queue 2" ?></span>
 		</div>
 
@@ -41,7 +41,7 @@
 	<span id="helpBlock" class="help-block">Third Queue</span>			
 	<div class="progress">
 
-		<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue3 != 0) ? (($lengthOfQueue3 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue3" ?>
+		<div class="progress-bar progress-bar-info <?php echo ($lengthOfQueue3 != 0) ? "progress-bar-striped active" : "" ?>" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue3 != 0) ? (($lengthOfQueue3 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue3" ?>
 				<span class="sr-only"><?php echo "$lengthOfQueue3 patients in queue 3" ?></span>
 		</div>
 
@@ -50,7 +50,7 @@
 	<span id="helpBlock" class="help-block">Fourth Queue</span>			
 	<div class="progress">
 
-		<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue4 != 0) ? (($lengthOfQueue4 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue4" ?>
+		<div class="progress-bar progress-bar-success <?php echo ($lengthOfQueue4 != 0) ? "progress-bar-striped active" : "" ?>" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue4 != 0) ? (($lengthOfQueue4 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue4" ?>
 				<span class="sr-only"><?php echo "$lengthOfQueue4 patients in queue 4" ?></span>
 		</div>
 
@@ -59,7 +59,7 @@
 		<span id="helpBlock" class="help-block">Fifth Queue</span>			
 	<div class="progress">
 
-		<div class="progress-bar queue5 progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue5 != 0) ? (($lengthOfQueue5 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue5" ?>
+		<div class="progress-bar queue5 <?php echo ($lengthOfQueue5 != 0) ? "progress-bar-striped active" : "" ?>"" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo ($lengthOfQueue5 != 0) ? (($lengthOfQueue5 / $totalQueueLength) * 100) : 5; ?>%;"><?php echo "$lengthOfQueue5" ?>
 				<span class="sr-only"><?php echo "$lengthOfQueue5 patients in queue 5" ?></span>
 		</div>
 

@@ -62,13 +62,13 @@ class TriageOverview extends CI_Controller
 	function getNextPatient() {
 		// load queue model.
 		$this->load->model('queue');
-		return $this->queue->getNextPatient('TRIAGE');
+		return $this->queue->getNextPatient('0');
 	}
 	
 	function getLengthOfQueue() {
 		// load queue model.
 		$this->load->model('queue');
-		return $this->queue->getLengthOfQueue('TRIAGE');
+		return $this->queue->getLengthOfQueue('0');
 	}
 	
 } // end class

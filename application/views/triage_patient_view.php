@@ -126,7 +126,7 @@
 			<input type='hidden' class='form-control' name='queue' id='queue' value=''>
 
 			<div class='form-group'>
-				<button type="submit" id ="submitBtn" class="btn btn-primary" aria-label="Left Align"><span class='text-muted'>Submit</span>
+				<button type="submit" id ="submitBtn" class="btn btn-default" aria-label="Left Align"><span class='text-muted'>Submit</span>
 					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 				</button>
 			</div>

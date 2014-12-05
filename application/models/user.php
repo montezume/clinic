@@ -2,7 +2,7 @@
 Class User extends CI_Model {
 	
 	function getInvalidCount($username) {
-			$sql = "SELECT INVALID_LOGIN from USER where user_name = ?";
+			$sql = "SELECT INVALID_LOGIN from USERS where user_name = ?";
 			$query = $this->db->query($sql, array($username))->row_array();
 			
 			if ( count($query) != 0) {
@@ -15,7 +15,7 @@ Class User extends CI_Model {
 	
 	function login($username, $password) {
 		
-		$sql = "SELECT * from USER where user_name = ?";
+		$sql = "SELECT * from USERS where user_name = ?";
 		
 		$login = $this->db->query($sql, array($username))->row_array();
 		
@@ -69,7 +69,7 @@ Class User extends CI_Model {
 			'invalid_login' => $invalidCount
 			);
 		$this->db->where('user_id', $userId);
-		$this->db->update('user', $data);
+		$this->db->update('users', $data);
 		
 		return true;
 	}
@@ -79,7 +79,7 @@ Class User extends CI_Model {
 			'invalid_login' => 0
 			);
 		$this->db->where('user_id', $userId);
-		$this->db->update('user', $data);
+		$this->db->update('users', $data);
 		
 		return true;
 

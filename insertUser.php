@@ -5,7 +5,7 @@ $triagePass = password_hash("Triage", PASSWORD_BCRYPT);
 $nursePass = password_hash("Nurse", PASSWORD_BCRYPT);
 $everythingPass = password_hash("Everything", PASSWORD_BCRYPT);
 
-$mysqli = new mysqli("localhost:3306", "root", "");
+$mysqli = new mysqli("localhost:3306", "CS1237628", "inverchu");
 
 /* check connection */
 if ($mysqli->connect_errno) {
@@ -21,15 +21,16 @@ if ($mysqli->ping()) {
 }
 
 $insertUser = "
-USE CQS;
-INSERT INTO USER(USER_NAME, HASHED_PASSWORD, RECEPTION) VALUES ('John', '$hashpass', 1);
-INSERT INTO USER(USER_NAME, HASHED_PASSWORD, TRIAGE) VALUES ('Triage', '$triagePass', 1);
-INSERT INTO USER(USER_NAME, HASHED_PASSWORD, NURSE) VALUES ('Nurse', '$nursePass', 1);
-INSERT INTO USER(USER_NAME, HASHED_PASSWORD, RECEPTION, TRIAGE, NURSE, ADMIN) VALUES ('Everything', '$everythingPass', 1, 1, 1, 1);
+USE CS1237628;
+
+INSERT INTO USERS(USER_NAME, HASHED_PASSWORD, RECEPTION) VALUES ('John', '$hashpass', 1);
+INSERT INTO USERS(USER_NAME, HASHED_PASSWORD, TRIAGE) VALUES ('Triage', '$triagePass', 1);
+INSERT INTO USERS(USER_NAME, HASHED_PASSWORD, NURSE) VALUES ('Nurse', '$nursePass', 1);
+INSERT INTO USERS(USER_NAME, HASHED_PASSWORD, RECEPTION, TRIAGE, NURSE, ADMIN) VALUES ('Everything', '$everythingPass', 1, 1, 1, 1);
 
 
 INSERT INTO PATIENT(RAMQ_ID, FIRST_NAME, LAST_NAME, HOME_PHONE, EMERGENCY_PHONE, PRIMARY_PHYSICIAN, EXISTING_CONDITIONS, MEDICATION_1, MEDICATION_2, MEDICATION_3) VALUES ('123', 'John', 'SMITH', '555-555-5555', '555-666-6666', 'Doctor Who', 'Awesomeitis', 'Advil', 'Caffeine Pills', 'Coffee');
-INSERT INTO QUEUE(QUEUE_NAME, QUEUE_CONTENT) VALUES ('TRIAGE', '');
+INSERT INTO QUEUE(QUEUE_NAME, QUEUE_CONTENT) VALUES ('0', '');
 INSERT INTO QUEUE(QUEUE_NAME, QUEUE_CONTENT) VALUES ('1', '');
 INSERT INTO QUEUE(QUEUE_NAME, QUEUE_CONTENT) VALUES ('2', '');
 INSERT INTO QUEUE(QUEUE_NAME, QUEUE_CONTENT) VALUES ('3', '');

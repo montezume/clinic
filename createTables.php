@@ -1,6 +1,6 @@
 <?php
 
-$mysqli = new mysqli("localhost:3306", "root", "");
+$mysqli = new mysqli("localhost:3306", "CS1237628", "inverchu");
 
 /* check connection */
 if ($mysqli->connect_errno) {
@@ -17,16 +17,13 @@ if ($mysqli->ping()) {
 
 $create_table = 
 "
-
-CREATE DATABASE IF NOT EXISTS CQS;
-USE CQS;
+USE CS1237628;
 
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS visit;
 DROP TABLE IF EXISTS queue;
 DROP TABLE IF EXISTS system;
 DROP TABLE IF EXISTS patient;
-
 
 CREATE TABLE patient 
  (
@@ -37,7 +34,7 @@ CREATE TABLE patient
  HOME_PHONE VARCHAR(12) NOT NULL,
  EMERGENCY_PHONE VARCHAR(12) NOT NULL,
  PRIMARY_PHYSICIAN VARCHAR(255) NOT NULL,
- EXISTING_CONDITIONS TEXT NOT NULL,
+ EXISTING_CONDITIONS TEXT DEFAULT NULL,
  MEDICATION_1 VARCHAR(50) NOT NULL DEFAULT '',
  MEDICATION_2 VARCHAR(50) NOT NULL DEFAULT '',
  MEDICATION_3 VARCHAR(50) NOT NULL DEFAULT ''
@@ -73,21 +70,22 @@ CREATE TABLE visit
  CURRENT_POSITION INT(1) not null default 0
  );
 
- CREATE TABLE user 
+ CREATE TABLE users 
  (
  USER_ID INT(11) PRIMARY KEY auto_increment,
  USER_NAME VARCHAR(255) NOT NULL,
  HASHED_PASSWORD VARCHAR(255),
  INVALID_LOGIN INT(1) DEFAULT 0,
- RECEPTION BOOLEAN DEFAULT FALSE,
- TRIAGE BOOLEAN DEFAULT FALSE,
- NURSE BOOLEAN DEFAULT FALSE,
- ADMIN BOOLEAN DEFAULT FALSE
+ RECEPTION BOOLEAN DEFAULT 0,
+ TRIAGE BOOLEAN DEFAULT 0,
+ NURSE BOOLEAN DEFAULT 0,
+ ADMIN BOOLEAN DEFAULT 0
  );
  ";
  
-$create_tbl = $mysqli->multi_query($create_table);
+multi_query($mysqli, $create_table) or die(mysqli_error($mysqli));
 
+/*
 if ($create_tbl) {
 	echo "Table has created";
 	echo $mysqli->error;
@@ -96,6 +94,7 @@ else {
 	echo $mysqli->error;
         echo "error!!";  
 }
+*/
 
 $mysqli->close();
 ?>

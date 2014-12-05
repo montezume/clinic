@@ -142,7 +142,7 @@ Class Queue extends CI_Model {
 		$data = array(
 			'QUEUE_CONTENT' => $queue->serialize()
 			);
-		$this->db->where('QUEUE_NAME', $queueName);
+		$this->db->where('QUEUE_NAME', (int)$queueName);
 		$insert = $this->db->update('QUEUE', $data);
 		return $insert;
 

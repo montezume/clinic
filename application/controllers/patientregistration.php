@@ -142,7 +142,7 @@ class PatientRegistration extends CI_Controller
 	function addToTriage($visit_id) {
 		// create instance of the queue model
 		$this->load->model('queue');
-		$inserted = $this->queue->addToQueue($visit_id, 'TRIAGE');
+		$inserted = $this->queue->addToQueue($visit_id, '0');
 		return $inserted;
 	}
     	
