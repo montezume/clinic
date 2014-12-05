@@ -27,10 +27,9 @@ class Admin extends CI_Controller
 					// load model.
 					$this->load->model('visit');
 					// get post info - needs to be sent to view to make it sticky
-					$triageQueryTime = $_POST['toBeTriaged'];
-					$codeQueryTime = $_POST['timeForCode'];
-					$totalPatientsQueryTime = $_POST['totalPatientsQueryTime'];
-					
+					$triageQueryTime = htmlentities($_POST['toBeTriaged']);
+					$codeQueryTime = htmlentities($_POST['timeForCode']);
+					$totalPatientsQueryTime = htmlentities($_POST['totalPatientsQueryTime']);
 					$triageResults = $this->visit->getAverageTimeBeforeTriage($triageQueryTime);
 					
 					$codeResults = array();

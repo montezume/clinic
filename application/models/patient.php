@@ -28,16 +28,17 @@ Class Patient extends CI_Model {
 	function addPatient($patient) {
 			
 		$data = array(
-			'RAMQ_ID' => $patient['ramq'],
-			'FIRST_NAME' => $patient['firstName'],
-			'LAST_NAME' => $patient['lastName'],
-			'HOME_PHONE' => $patient['homePhone'],
-			'EMERGENCY_PHONE' => $patient['emergencyPhone'],
-			'PRIMARY_PHYSICIAN' => $patient['primaryPhysician'],
-			'EXISTING_CONDITIONS' => $patient['conditions'],
-			'MEDICATION_1' => $patient['select1'],
-			'MEDICATION_2' => $patient['select2'],
-			'MEDICATION_3' => $patient['select3'] );
+			'RAMQ_ID' => htmlentities($patient['ramq']),
+			'FIRST_NAME' => htmlentities($patient['firstName']),
+			'LAST_NAME' => htmlentities($patient['lastName']),
+			'HOME_PHONE' => htmlentities($patient['homePhone']),
+			'EMERGENCY_PHONE' => htmlentities($patient['emergencyPhone']),
+			'PRIMARY_PHYSICIAN' => htmlentities($patient['primaryPhysician']),
+			'EXISTING_CONDITIONS' => htmlentities($patient['conditions']),
+			'MEDICATION_1' => htmlentities($patient['select1']),
+			'MEDICATION_2' => htmlentities($patient['select2']),
+			'MEDICATION_3' => htmlentities($patient['select3'])
+			);
 	
 		$result = $this->db->insert('PATIENT', $data);
 		$patient_id = $this->db->insert_id();
@@ -48,16 +49,16 @@ Class Patient extends CI_Model {
 	function updatePatient($patient, $patient_id) {
 		
 		$data = array(
-			'RAMQ_ID' => $patient['ramq'],
-			'FIRST_NAME' => $patient['firstName'],
-			'LAST_NAME' => $patient['lastName'],
-			'HOME_PHONE' => $patient['homePhone'],
-			'EMERGENCY_PHONE' => $patient['emergencyPhone'],
-			'PRIMARY_PHYSICIAN' => $patient['primaryPhysician'],
-			'EXISTING_CONDITIONS' => $patient['conditions'],
-			'MEDICATION_1' => $patient['select1'],
-			'MEDICATION_2' => $patient['select2'],
-			'MEDICATION_3' => $patient['select3'] );
+			'RAMQ_ID' => htmlentities($patient['ramq']),
+			'FIRST_NAME' => htmlentities($patient['firstName']),
+			'LAST_NAME' => htmlentities($patient['lastName']),
+			'HOME_PHONE' => htmlentities($patient['homePhone']),
+			'EMERGENCY_PHONE' => htmlentities($patient['emergencyPhone']),
+			'PRIMARY_PHYSICIAN' => htmlentities($patient['primaryPhysician']),
+			'EXISTING_CONDITIONS' => htmlentities($patient['conditions']),
+			'MEDICATION_1' => htmlentities($patient['select1']),
+			'MEDICATION_2' => htmlentities($patient['select2']),
+			'MEDICATION_3' => htmlentities($patient['select3']) );
 		$this->db->where('PATIENT_ID', $patient_id);
 		$this->db->update('PATIENT', $data);
 	}
