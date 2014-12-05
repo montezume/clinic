@@ -18,19 +18,6 @@
 					<h3>Time period</h3>
 					</div>
 					</div>
-					<div class="form-group">
-						
-						<label for="avgTriageTime" class="control-label col-sm-4" style="text-align:left">Average time spent to be triaged.</label>
-						<div class="col-sm-4">
-							<select class="form-control" name="toBeTriaged">
-								<option value="1" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 1) ? "selected" : "" ?> >1 hour</option>
-								<option value="2" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 2) ? "selected" : "" ?> >2 hours</option>
-								<option value="4" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 4) ? "selected" : "" ?> >4 hours</option>
-								<option value="12" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 12) ? "selected" : "" ?> >12 hours</option>
-								<option value="24" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 24) ? "selected" : "" ?> >24 hours</option>
-							</select>	
-						</div>
-					</div>
 					
 						<div class="form-group">
 						<label for="avgTimeSpentInEachCode" class="control-label col-sm-4" style="text-align:left;">Average time spent in each code.</label>
@@ -46,6 +33,21 @@
 
 
 					</div>
+
+					<div class="form-group">
+						
+						<label for="avgTriageTime" class="control-label col-sm-4" style="text-align:left">Average time spent to be triaged.</label>
+						<div class="col-sm-4">
+							<select class="form-control" name="toBeTriaged">
+								<option value="1" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 1) ? "selected" : "" ?> >1 hour</option>
+								<option value="2" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 2) ? "selected" : "" ?> >2 hours</option>
+								<option value="4" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 4) ? "selected" : "" ?> >4 hours</option>
+								<option value="12" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 12) ? "selected" : "" ?> >12 hours</option>
+								<option value="24" <?php echo (isset($triageTimeSelected) && $triageTimeSelected == 24) ? "selected" : "" ?> >24 hours</option>
+							</select>	
+						</div>
+					</div>
+			
 										<div class="form-group">
 						<label for="totalPatientsQueryTime" class="control-label col-sm-4" style="text-align:left;">Total patients examined in each code.</label>
 								<div class="col-sm-4">
