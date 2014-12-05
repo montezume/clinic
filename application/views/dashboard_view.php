@@ -35,7 +35,7 @@
 						<?php echo ($nurse) ? anchor('examinationoverview', 'Examination', array('class' => 'btn btn-success col-sm-4')) : "" ?>
 					</div>
 				</div>
-				
+		<h3 class="text-muted">Parting thoughts</h3>		
 		<p>Be sure  to punch out before you leave!</p>
 				</div>
 			<!-- end well -->	
