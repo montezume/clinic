@@ -19,6 +19,10 @@
 			<h4 class="list-group-item-heading">Employee of the month <span class="glyphicon glyphicon-star text-muted" aria-hidden="true"></span></h4>
 			<p class="list-group-item-text">Please send your congradulations to John Smith, employee of the month!</p>
 		  </a>
+		  <a href="#" class="list-group-item" >
+			<h4 class="list-group-item-heading">Administration screen <span class="glyphicon glyphicon-thumbs-up text-muted" aria-hidden="true"></span></h4>
+			<p class="list-group-item-text">Wow, that admin screen is awesome!</p>
+		  </a>
 		</div>
 		<h3 class="text-muted">What do you want to do today?</h3>
 				<div class="well">
