@@ -7,7 +7,8 @@ You can find it online <a href="http://waldo2.dawsoncollege.qc.ca/1237628/clinic
 
 ### Features
 - **Login and logout**: passwords are safely hashed in the database.
-- **Queuing**: 5 priorities queues ensure that patients are treated in an efficient and fair manner.
+- **Safe login**: Maximum of five failed password attempts before user account is locked.
+- **Queuing**: Five priorities queues ensure that patients are treated in an efficient and fair manner.
 - **Modern design**: created with the modern web in mind, **clinic** makes use of framesworks like [BootStrap](https://www.getbootstrap.com) and [Chart.js](http://www.chartjs.org/).
 
 ## Extra features
