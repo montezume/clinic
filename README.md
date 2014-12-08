@@ -9,7 +9,7 @@ You can find it online <a href="http://waldo2.dawsoncollege.qc.ca/1237628/clinic
 - **Login and logout**: passwords are safely hashed in the database.
 - **Safe login**: Maximum of five failed password attempts before user account is locked.
 - **Queuing**: Five priorities queues ensure that patients are treated in an efficient and fair manner.
-- **Modern design**: created with the modern web in mind, **clinic** makes use of framesworks like [BootStrap](https://www.getbootstrap.com), [Chart.js](http://www.chartjs.org/) and [CodeIgniter](http://codeigniter.com.com).
+- **Modern design**: created with the modern web in mind, **clinic** makes use of frameworks like [BootStrap](https://www.getbootstrap.com), [Chart.js](http://www.chartjs.org/) and [CodeIgniter](http://codeigniter.com.com).
 
 ## Extra features
 - **Admin page**: useful statistics are displayed using doughnut charts and bar graphs.
