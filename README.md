@@ -14,7 +14,7 @@ You can find it online <a href="http://waldo2.dawsoncollege.qc.ca/1237628/clinic
 - **Admin page**: useful statistics are displayed using doughnut charts and bar graphs.
 
 ## TODO
-~~-**Concurrency**: modify model to lock rows while processing transaction to prevent concurrency issues.~~
+- ~~**Concurrency**: modify model to lock rows while processing transaction to prevent concurrency issues.~~
 - **Sanitize**: *striptags everything!* Must make sure input from user is sanitized, especially in the admin page.
 - **Sticky forms**: a few of the forms that aren't sticky, need to be sticky.
 - **Verify input**: phone numbers, etc could be validated.
