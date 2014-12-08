@@ -4,22 +4,16 @@ Class Queue extends CI_Model {
 	/* Peeks at the first patient's registration time in each queue, and returns
 	* the code name with the most recent registration.
 	* This method does NOT alter the queue in the database.
-	*/
-	
-	function compareTwoQueues($queueName1, $queueName2) {
-	    
-	    
-	}
-	
-	
+	*/	
 	
 	function compareQueues($queue1, $queue2, $queue3 = -1, $queue4 = -1) {
-		// Get the triage queues.
+		// Get the first two triage queues.
 		$queue1Obj = $this->getQueue($queue1);
 		$queue2Obj = $this->getQueue($queue2);
 		
 		// this method works with up to four queues, that's why there are default
-		// values
+		// values.
+		
 		if ($queue3 != -1) {
 			$queue3Obj = $this->getQueue($queue3);
 		}
@@ -30,6 +24,7 @@ Class Queue extends CI_Model {
 		$data = array();
 		
 		if ($queue1Obj->count() != 0) {
+		    // store first visit id from queue 1 in array
 			$queue1VisitId = $queue1Obj->dequeue();
 			$data[$queue1] = $queue1VisitId;
 		}
