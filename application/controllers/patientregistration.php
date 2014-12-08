@@ -76,7 +76,8 @@ class PatientRegistration extends CI_Controller
 				}
 		}
 	}
-  
+    /* Returns an associative array of all the patient's info from DB
+     */
     function get_patient($ramq)
     {
         // create instance of user model
@@ -96,7 +97,8 @@ class PatientRegistration extends CI_Controller
 		}
 		// here we can show the other fields and populate them.
     }
-    
+    /* Show the registration form with patient's info if present.
+     */
     function show_registration($patient)
     {   $this->load->helper(array(
             'form',
@@ -138,22 +140,25 @@ class PatientRegistration extends CI_Controller
 		
         $this->load->view('footer');
     }
-	
+	/* Add visit id to triage queue.
+	 */
 	function addToTriage($visit_id) {
 		// create instance of the queue model
 		$this->load->model('queue');
 		$inserted = $this->queue->addToQueue($visit_id, '0');
 		return $inserted;
 	}
-    	
+    /* Create entry in visit table.
+     */
 	function addVisit($patient_id) {
 		// create instance of visit model
 		$this->load->model('visit');
 		$visit_id = ($this->visit->addVisit($patient_id));
 		return $visit_id;
 	}
-		
-	function addPatient($patient) {
+	/* If RAMQ id not in db, add the patient to db.
+	 */
+	 	function addPatient($patient) {
 	    // create instance of user model
         
 		$this->load->model('patient');
@@ -167,7 +172,8 @@ class PatientRegistration extends CI_Controller
 		}
 
 	}
-		
+	/* If ramq id is in db, update the entry.
+	 */
 	function updatePatient($patient, $patient_id) {
 	    // create instance of user model
         $this->load->model('patient');
@@ -179,12 +185,6 @@ class PatientRegistration extends CI_Controller
 			return false;
 		}
 	}
-    function logout() {
-
-        $this->session->unset_userdata('logged_in');
-        session_destroy();
-        redirect('login', 'refresh');
-    }
     
 }
 
