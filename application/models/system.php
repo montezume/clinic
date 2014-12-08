@@ -11,12 +11,13 @@ Class System extends CI_Model {
 		
 		return $currentPosition;
 	}
-	
+	/* Increment current position.
+	 */
 	function incrementCurrentPosition() {
 
 		$currentPosition = $this->getCurrentPosition();
 		$currentPosition ++;
-		
+		// If it's above 9, revert back to 0.
 		if ($currentPosition > 9) {
 			$currentPosition = 0;
 		}

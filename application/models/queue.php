@@ -45,7 +45,8 @@ Class Queue extends CI_Model {
 				$data[$queue4] = $queue4Obj->dequeue();
 			}
 		}
-		// if there are multiple visit ids
+		// if there are multiple visit ids, preform SQL query
+		// that returns the code with the first registered patient.
 		if (count($data) > 1) {
 		
 			$this->db->select("code");
@@ -108,10 +109,10 @@ Class Queue extends CI_Model {
 	
 		$this->db->trans_complete(); //commits or rollback the transaction, releases locks
 		
+		// concurrency issue.
 		if ($this->db->trans_status() === FALSE) {
 				return -2;
 		} 
-		
 		return $nextVisitId;
 		
 	}

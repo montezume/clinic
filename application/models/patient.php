@@ -1,6 +1,7 @@
 <?php
 Class Patient extends CI_Model {
-	
+	/* Finds a patient by Patient id.
+	 */
 	function getPatientById($patient_id) {
 		$this->db->select();
 		$this->db->where('PATIENT_ID', $patient_id);
@@ -8,7 +9,8 @@ Class Patient extends CI_Model {
 		return $query;
 
 	}
-	
+	/* Finds a patient by RAMQ id.
+	 */
 	function findPatient($ramq) {
 		
 		$sql = "SELECT * from PATIENT where RAMQ_ID = ?";
@@ -25,6 +27,8 @@ Class Patient extends CI_Model {
 		}
 	}
 
+	/* Add a patient to the db.
+	 */
 	function addPatient($patient) {
 			
 		$data = array(
@@ -45,7 +49,8 @@ Class Patient extends CI_Model {
 		
 		return $patient_id;	
 	}
-	
+	/* Update a patient in db.
+	 */
 	function updatePatient($patient, $patient_id) {
 		
 		$data = array(

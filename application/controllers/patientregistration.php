@@ -12,13 +12,13 @@ class PatientRegistration extends CI_Controller
     function index()
     {		
 		// set form rules
-		$this->form_validation->set_rules('ramq', 'RAMQ', 'trim|required');
-		$this->form_validation->set_rules('firstName', 'first name', 'trim|required');
-		$this->form_validation->set_rules('lastName', 'last name', 'trim|required');
-		$this->form_validation->set_rules('homePhone', 'home phone', 'trim|required');
-		$this->form_validation->set_rules('emergencyPhone', 'emergency contact', 'trim|required');
-		$this->form_validation->set_rules('conditions', 'existing conditions', 'trim|required');
-		$this->form_validation->set_rules('primaryPhysician', 'primary physician', 'trim|required');
+		$this->form_validation->set_rules('ramq', 'RAMQ', 'trim|required|htmlentities');
+		$this->form_validation->set_rules('firstName', 'first name', 'trim|required|htmlentities');
+		$this->form_validation->set_rules('lastName', 'last name', 'trim|required|htmlentities');
+		$this->form_validation->set_rules('homePhone', 'home phone', 'trim|required|htmlentities');
+		$this->form_validation->set_rules('emergencyPhone', 'emergency contact', 'trim|required|htmlentities');
+		$this->form_validation->set_rules('conditions', 'existing conditions', 'trim|required|htmlentities');
+		$this->form_validation->set_rules('primaryPhysician', 'primary physician', 'trim|required|htmlentities');
 
 		$this->form_validation->set_error_delimiters("<div class='alert alert-danger' role='alert'>
 		<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span>
@@ -34,8 +34,7 @@ class PatientRegistration extends CI_Controller
             redirect('login', 'refresh');
 			
         } else {
-						
-			// form has been submitted
+			
 				$patient = $this->get_patient($ramq);
 				if (isset($patient['PATIENT_ID'])) {
 					$patient_id = $patient['PATIENT_ID'];
@@ -47,13 +46,11 @@ class PatientRegistration extends CI_Controller
 					}
 				else {
 					// form has been successfully submitted, add to queue and redirect.
-					
 					$patient = $_POST;
-
+		
 					// Patient id exists, patient is already in DB, therefore update.
 					if (isset($patient_id)) {
 						$this->updatePatient($patient, $patient_id);
-
 					}
 					// Patient is not yet in db, insert.
 					else {
@@ -71,7 +68,6 @@ class PatientRegistration extends CI_Controller
 					
 					// send flash data to confirm that patient was added or updated to triage.
 					$this->session->set_flashdata('change', $message);
-					
 					redirect("ramqregistration", 'refresh');
 				}
 		}
@@ -80,18 +76,18 @@ class PatientRegistration extends CI_Controller
      */
     function get_patient($ramq)
     {
-        // create instance of user model
+        // create instance of patient model
         $this->load->model('patient');
-
+		
         $patient = ($this->patient->findPatient($ramq));
 				
+		// if there's no patient in db.
 		if (!$patient) {
-		    $this->form_validation->set_message('get_patient', 'No patient found');
 			return array(
 			'RAMQ_ID' => $ramq
 			);
 		}
-		
+		// if he's in the db, return the patient.
 		else {
 			return array_merge($patient);
 		}

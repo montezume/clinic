@@ -1,6 +1,7 @@
 <?php
 Class User extends CI_Model {
-	
+	/* Return the number of invalid logins by username.
+	 */
 	function getInvalidCount($username) {
 			$sql = "SELECT INVALID_LOGIN from USERS where user_name = ?";
 			$query = $this->db->query($sql, array($username))->row_array();
@@ -12,7 +13,6 @@ Class User extends CI_Model {
 				return false;
 			}
 	}
-	
 	function login($username, $password) {
 		
 		$sql = "SELECT * from USERS where user_name = ?";
