@@ -35,9 +35,9 @@ class ExaminationOverview extends CI_Controller
 			 if (!($this->input->server('REQUEST_METHOD') === 'POST')) {	
 					$this->showExaminationOverview($queueLengths, $totalQueueLength);
 				}
-			// redirect to triage screen.
 			else {
-				// form is submitted, remove a patient from the queue.
+				// form is submitted, remove a patient from the queue
+				// if they aren't all empty.
 				if ($totalQueueLength != 0) {
 					$nextVisitId = $this->getNextPatient();
 					}
@@ -49,19 +49,26 @@ class ExaminationOverview extends CI_Controller
 					// show view again.
 					$this->showExaminationOverview($queueLengths, $totalQueueLength);
 				}
-				// a patient was dequeued from queue.
+				
 				else {
+				    
+				    if ($nextVisitId == -2) {
+				        // there was a concurrency issue, show view with error.
+				        $this->showExaminationOverview($queueLengths, $totalQueueLength, true);
+				        }
+				    else {
+				    
 					// the next screen requires visit ID 
 					$this->session->set_flashdata('visit_id', $nextVisitId);
-					
-					//var_dump($this->compareTwoPatients('2', '3'));
 					redirect("examinationscreen", 'refresh');
+					}
 				}
 			}
 		}
 	}
 	
-	function showExaminationOverview($queueLengths, $totalQueueLength) {
+	
+	function showExaminationOverview($queueLengths, $totalQueueLength, $concurrencyIssue = false) {
 		$headerData = array(
 						'title' => 'CQS - Examination Overview'
 					);
@@ -75,7 +82,8 @@ class ExaminationOverview extends CI_Controller
 				'lengthOfQueue3' => $queueLengths[2],
 				'lengthOfQueue4' => $queueLengths[3],
 				'lengthOfQueue5' => $queueLengths[4],
-			);
+				'concurrencyIssue' => $concurrencyIssue
+				);
 		
 		$this->load->view('examination_overview_view', $viewData);
 		$this->load->view('footer');
@@ -92,23 +100,25 @@ class ExaminationOverview extends CI_Controller
 		// Check to see if there are any code 1 patients - they always go first.
 		
 		if ($this->queue->getLengthOfQueue('1') > 0) {
-			return $this->queue->getNextPatient('1');
+			return $this->queue->getNextVisitId('1');
 		}
 		
 		else {
 		
 		// There are no code 1 patients, proceed as usual using the current position in system table.
 
-		for ($i = 0; $i < 9; $i++) {
+        //$currentPosition = $this->system->getCurrentPosition();
+        
+		for ($i = 0; $i < 10; $i++) {
 		
-			$currentPosition = $this->system->incrementCurrentPosition();
-
+		    $currentPosition = $this->system->incrementCurrentPosition();
+		    		    
 			switch($currentPosition) {
 				case 0: 
 				case 2:
 				case 5:
 				case 7:
-					$nextVisitId = $this->queue->getNextPatient('2');
+					$nextVisitId = $this->queue->getNextVisitId('2');
 					break;
 				case 1:
 				case 4:
@@ -119,7 +129,7 @@ class ExaminationOverview extends CI_Controller
 					
 					$queueToUse = $this->queue->compareQueues('2', '3');
 					if ($queueToUse != -1) {
-						$nextVisitId = $this->queue->getNextPatient($queueToUse);
+						$nextVisitId = $this->queue->getNextVisitId($queueToUse);
 						}
 					else {
 						$nextVisitId = -1;
@@ -133,7 +143,7 @@ class ExaminationOverview extends CI_Controller
 					
 					$queueToUse = $this->queue->compareQueues('2', '3', '4');
 					if ($queueToUse != -1) {
-						$nextVisitId = $this->queue->getNextPatient($queueToUse);
+						$nextVisitId = $this->queue->getNextVisitId($queueToUse);
 						}
 					else {
 						$nextVisitId = -1;
@@ -141,12 +151,12 @@ class ExaminationOverview extends CI_Controller
 					break;		
 				case 6:
 					$queueToUse = 5;
-					// check registration time of queue 2, queue 3, queue 4
+					// check registration time of queue 2, queue 3, queue 4, queue 5
 					// and determine who came first.
 					
 					$queueToUse = $this->queue->compareQueues('2', '3', '4', '5');
 					if ($queueToUse != -1) {
-						$nextVisitId = $this->queue->getNextPatient($queueToUse);
+						$nextVisitId = $this->queue->getNextVisitId($queueToUse);
 						}
 					else {
 						$nextVisitId = -1;
@@ -155,10 +165,18 @@ class ExaminationOverview extends CI_Controller
 					
 				} // end switch
 				
-				if ($nextVisitId != -1) {
+				// concurrency issue.
+				
+				if ($nextVisitId == -2) {
+					return -2;
+				}
+
+                // patient found.
+				if ($nextVisitId > 0) {
 					return $nextVisitId;
 				}
-							
+				
+										
 			} // end loop
 			
 			// queues are empty.

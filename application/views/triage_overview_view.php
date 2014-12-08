@@ -5,8 +5,15 @@
 <div class ="well">
 
 	<?php echo form_open('triageoverview'); ?>
+	
+	
 	<div class='form' role='form'>
-	<?php echo validation_errors(); ?>				
+	<?php echo validation_errors(); ?>			
+		
+	<?php echo ($concurrencyIssue) ? "<div class='alert alert-danger' role='alert'>
+		<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> There was a problem retrieving patient. Please try again.
+		<span class='sr-only'>Error:</span></div>" : "" ; ?> 
+		
 
 	<span id="helpBlock" class="help-block">Number of patients in triage queue</span>			
 

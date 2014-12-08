@@ -32,8 +32,13 @@ class TriageOverview extends CI_Controller
 				if ($nextVisitId == -1) {
 					$this->showTriageOverview();
 				}
+				
 				// a patient was dequeued from triage queue.
 				else {
+				    
+				    if ($nextVisitId == -2) {
+				        $this->showTriageOverview(true);
+				    }				    
 					// the triage screen requires visit ID 
 					$this->session->set_flashdata('visit_id', $nextVisitId);
 					redirect("triagepatient", 'refresh');
@@ -42,7 +47,7 @@ class TriageOverview extends CI_Controller
 		}
 	}
 	
-	function showTriageOverview() {
+	function showTriageOverview($concurrencyIssue = false) {
 		$headerData = array(
 						'title' => 'CQS - Triage Overview'
 					);
@@ -52,7 +57,8 @@ class TriageOverview extends CI_Controller
 		
 		$viewData = 
 			array(
-				'lengthOfQueue' => $lengthOfQueue
+				'lengthOfQueue' => $lengthOfQueue,
+				'concurrencyIssue' => $concurrencyIssue
 			);
 		
 		$this->load->view('triage_overview_view', $viewData);
@@ -62,7 +68,8 @@ class TriageOverview extends CI_Controller
 	function getNextPatient() {
 		// load queue model.
 		$this->load->model('queue');
-		return $this->queue->getNextPatient('0');
+		// We use the concurrency safe method
+		return $this->queue->getNextVisitId('0');
 	}
 	
 	function getLengthOfQueue() {

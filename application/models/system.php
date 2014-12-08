@@ -17,7 +17,7 @@ Class System extends CI_Model {
 		$currentPosition = $this->getCurrentPosition();
 		$currentPosition ++;
 		
-		if ($currentPosition == 9) {
+		if ($currentPosition > 9) {
 			$currentPosition = 0;
 		}
 		

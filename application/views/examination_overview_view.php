@@ -20,6 +20,11 @@
 		<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> No patients in queue, why not have a coffee?
 		<span class='sr-only'>Error:</span></div>" : "" ; ?> 
 	
+	<?php echo ($concurrencyIssue) ? "<div class='alert alert-danger' role='alert'>
+		<span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> There was a problem retrieving patient. Please try again.
+		<span class='sr-only'>Error:</span></div>" : "" ; ?> 
+		
+		
 	<span id="helpBlock" class="help-block">First Queue</span>			
 
 	<div class="progress">
