@@ -11,6 +11,17 @@
 
 
 </div>
+
+		<div class='form-group'>
+			<div class='row'>
+				<label for='ramq' class='col-sm-2 control-label'>Triage Level <span class="glyphicon glyphicon-signal" aria-hidden="true"></span></label>
+				<div class='col-sm-10'>
+					<input type='text' readonly='readonly' class='form-control' name='triageLevel' placeholder='Triage Level' value="<?php echo isset($visit['CODE']) ? $visit['CODE'] : '' ;?>">
+				</div>
+			</div>
+		</div>
+		
+
 		<div class='form-group'>
 			<div class='row'>
 				<label for='ramq' class='col-sm-2 control-label'>RAMQ</label>
